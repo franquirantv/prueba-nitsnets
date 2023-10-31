@@ -1,0 +1,15 @@
+<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+</mat-progress-spinner>
+<ng-container *ngFor="let character of characters">
+  <ng-container *ngIf="character">
+    <h2>{{ character.name }}</h2>
+    <p>{{ character.id }}</p>
+    <p>{{ character.description }}</p>
+    <img
+      [ngSrc]="character.thumbnail.path + '.' + character.thumbnail.extension"
+      alt="Personaje de animación {{ character.name }}"
+      width="850"
+      height="850" />
+  </ng-container>
+  <ng-container *ngIf="!character"> personaje no renderizado </ng-container>
+</ng-container>
