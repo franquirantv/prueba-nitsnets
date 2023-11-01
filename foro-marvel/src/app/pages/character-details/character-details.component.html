@@ -1,0 +1,34 @@
+<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+</mat-progress-spinner>
+<ng-container *ngIf="!loading">
+  <p>{{ character.id }}</p>
+  <p>{{ character.name }}</p>
+  <p>{{ character.description }}</p>
+  <img
+    [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
+    alt="character.name" />
+  <h2>Eventos</h2>
+  <ul>
+    <li *ngFor="let event of events">
+      {{ event.name }}
+    </li>
+  </ul>
+  <h2>Series</h2>
+  <ul>
+    <li *ngFor="let serie of series">
+      {{ serie.name }}
+    </li>
+  </ul>
+  <h2>Comics</h2>
+  <ul>
+    <li *ngFor="let comic of comics">
+      {{ comic.name }}
+    </li>
+  </ul>
+  <h2>URLs</h2>
+  <ul>
+    <li *ngFor="let url of urls">
+      {{ url.type }}: <a [href]="url.url">{{ url.url }}</a>
+    </li>
+  </ul>
+</ng-container>

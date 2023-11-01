@@ -1,12 +1,6 @@
-<h1>Personajes {{ title }}</h1>
-
-<ul>
-  <li>
-    <a routerLink="/inicio">Inicio</a>
-  </li>
-  <li>
-    <a routerLink="/lista">Personajes</a>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
+<main>
+  <app-navbar></app-navbar>
+  <h1>{{ title }}</h1>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</main>
