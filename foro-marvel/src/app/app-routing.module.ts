@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CharacterListComponent } from './pages/character-list/character-list.component';
-import { AppComponent } from './app.component';
 import { CharacterDetailsComponent } from './pages/character-details/character-details.component';
+import { LocalCharacterListComponent } from './pages/local-character-list/local-character-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   {
     title: 'Inicio',
     path: 'inicio',
-    component: AppComponent,
+    component: CharacterListComponent,
   },
   {
-    title: 'Lista de personajes',
-    path: 'lista',
-    component: CharacterListComponent,
+    title: 'Personajes locales',
+    path: 'personajes-locales',
+    component: LocalCharacterListComponent,
   },
   {
     title: 'Detalles de personaje',

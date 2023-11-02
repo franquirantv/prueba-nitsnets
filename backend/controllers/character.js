@@ -23,7 +23,7 @@ const getCharacters = async (req, res) => {
             res.status(200).json({ 
                 ok: true,
                 msg: 'Acción realizada con éxito.',
-                rows
+                character: rows
             });
         });
     } catch (error) {
@@ -74,11 +74,22 @@ const createCharacters = async (req, res) => {
     try {
         const { name, description } = req.body;
         let { thumbnail } = req.body;
-        if (thumbnail === undefined) thumbnail = 'no-image.png';
+        if (thumbnail.length < 1 || thumbnail == "") {
+            thumbnail = {
+                path: 'no-image',
+                extension: 'png'
+            };
+        }
+
+        if ( thumbnail.path == "" || thumbnail.extension == "" || thumbnail.path.length < 1 || thumbnail.extension.length < 1){
+            thumbnail.path = 'no-image';
+            thumbnail.extension = 'png';
+        } 
+        const thumbnailObject = JSON.stringify(thumbnail);
         //obtener la fecha actual
         const modified = new Date().toISOString();
         sql = `INSERT INTO Character(name, description, thumbnail, modified) VALUES (?, ?, ?, ?)`;
-        db.run(sql, [name, description, thumbnail, modified], function (error, row) {
+        db.run(sql, [name, description, thumbnailObject, modified], function (error, row) {
             if (error){
                 return res.status(400).json({
                     ok: false,

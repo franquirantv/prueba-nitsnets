@@ -16,6 +16,7 @@ import { CharacterDetailsComponent } from './pages/character-details/character-d
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NavbarComponent } from './commons/navbar/navbar.component';
 import { FooterComponent } from './commons/footer/footer.component';
+import { LocalCharacterListComponent } from './pages/local-character-list/local-character-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FooterComponent } from './commons/footer/footer.component';
     PaginationComponent,
     NavbarComponent,
     FooterComponent,
+    LocalCharacterListComponent,
   ],
   imports: [
     BrowserModule,

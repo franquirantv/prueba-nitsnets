@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Character } from '../../models/character.model';
 
 @Component({
@@ -6,8 +6,12 @@ import { Character } from '../../models/character.model';
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.css'],
 })
-export class CharacterComponent {
+export class CharacterComponent implements OnInit {
   constructor() {}
 
   @Input() characters: Character[] = [];
+
+  ngOnInit(): void {
+    console.log(this.characters);
+  }
 }
