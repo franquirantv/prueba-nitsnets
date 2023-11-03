@@ -8,7 +8,7 @@ describe('LocalCharacterListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LocalCharacterListComponent]
+      declarations: [LocalCharacterListComponent],
     });
     fixture = TestBed.createComponent(LocalCharacterListComponent);
     component = fixture.componentInstance;

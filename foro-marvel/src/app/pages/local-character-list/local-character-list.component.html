@@ -1,7 +1,16 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
+
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#miModal">
+  Añade un personaje
+</button>
+
 <ng-container *ngIf="!loading">
-  <app-character [characters]="characters"></app-character>
+  <app-character [characters]="displayCharacters"></app-character>
   <!-- <app-pagination
     (cambiarPagina)="cambiarPagina($event)"
     [texto]="true"
@@ -9,3 +18,102 @@
     [registroActual]="posicionactual + 1"
     [registrosPorPagina]="registrosporpagina"></app-pagination> -->
 </ng-container>
+
+<!-- The Modal -->
+<div class="modal" id="miModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir personaje</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body scrollable-content">
+        <form
+          (ngSubmit)="onSubmit()"
+          id="addCharacter"
+          [formGroup]="addCharacterForm">
+          <div class="mb-3">
+            <label for="inputName1" class="form-label">Nombre</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputName1"
+              aria-describedby="nameHelp"
+              placeholder="Batman, Spiderman, Iron-man..."
+              maxlength="30" />
+            <div id="nameHelp" class="form-text">
+              Como máximo 30 caracteres.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="textareaDescription" class="form-label"
+              >Descripción</label
+            >
+            <textarea
+              class="form-control"
+              id="textareaDescription"
+              maxlength="200"
+              rows="1"
+              (input)="autoGrow($event)"
+              aria-describedby="nameHelp"></textarea>
+            <div id="descriptionHelp" class="form-text">
+              Como máximo 200 caracteres.
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="col-lg-12 mx-auto">
+              <!-- Upload image input-->
+              <div
+                class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                <input
+                  id="upload"
+                  accept="image/*"
+                  type="file"
+                  (change)="readURL($event); showFileName($event)"
+                  class="form-control border-0" />
+                <label
+                  id="upload-label"
+                  for="upload"
+                  class="font-weight-light text-muted"
+                  >Nombre de la imagen...</label
+                >
+                <div class="input-group-append">
+                  <label
+                    for="upload"
+                    class="btn btn-light m-0 rounded-pill px-4">
+                    <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                    ><small class="text-uppercase font-weight-bold text-muted"
+                      >Elegir imagen</small
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <!-- Uploaded image area-->
+              <p class="font-italic text-center">
+                Puedes ver la imagen que has subido en la parte inferior.
+              </p>
+              <div class="image-area mt-4">
+                <img
+                  id="imageResult"
+                  [src]="imageSrc"
+                  alt="Imagen subida por el usuario"
+                  class="img-fluid rounded shadow-sm mx-auto d-block" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="submit" form="addCharacter" class="btn btn-primary">
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

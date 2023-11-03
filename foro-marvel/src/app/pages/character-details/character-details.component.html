@@ -1,6 +1,14 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
-<ng-container *ngIf="!loading">
+
+<ng-container *ngIf="isLocalCharacter && !loading">
+  <p>{{ character.id }}</p>
+  <p>{{ character.name }}</p>
+  <p>{{ character.description }}</p>
+  <img [src]="character.thumbnail" alt="character.name" />
+</ng-container>
+
+<ng-container *ngIf="!isLocalCharacter && !loading">
   <p>{{ character.id }}</p>
   <p>{{ character.name }}</p>
   <p>{{ character.description }}</p>

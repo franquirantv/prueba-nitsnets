@@ -7,10 +7,7 @@
       <a routerLink="/detalles/{{ character.id }}">
         <img
           [ngSrc]="
-            'assets/' +
-            character.thumbnail.path +
-            '.' +
-            character.thumbnail.extension
+            character.thumbnail.path + '.' + character.thumbnail.extension
           "
           alt="Personaje de animación {{ character.name }}"
           height="450"

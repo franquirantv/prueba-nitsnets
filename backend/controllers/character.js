@@ -72,24 +72,24 @@ const getCharactersById = async (req, res) => {
 
 const createCharacters = async (req, res) => {
     try {
+        // Formatos de imagen válidos
         const { name, description } = req.body;
         let { thumbnail } = req.body;
-        if (thumbnail.length < 1 || thumbnail == "") {
-            thumbnail = {
-                path: 'no-image',
-                extension: 'png'
-            };
-        }
+        var extension = thumbnail.split('.')[1];
 
-        if ( thumbnail.path == "" || thumbnail.extension == "" || thumbnail.path.length < 1 || thumbnail.extension.length < 1){
-            thumbnail.path = 'no-image';
-            thumbnail.extension = 'png';
-        } 
-        const thumbnailObject = JSON.stringify(thumbnail);
+        if (thumbnail.length < 1 || thumbnail == "") {
+            thumbnail = 'no-image.png';
+        } else if (extension == "" || extension == undefined || extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'webp'){
+            return res.status(400).json({
+                ok: false,
+                msg: "El formato de la imagen no es válido",
+            });
+        }
+        
         //obtener la fecha actual
         const modified = new Date().toISOString();
         sql = `INSERT INTO Character(name, description, thumbnail, modified) VALUES (?, ?, ?, ?)`;
-        db.run(sql, [name, description, thumbnailObject, modified], function (error, row) {
+        db.run(sql, [name, description, thumbnail, modified], function (error, row) {
             if (error){
                 return res.status(400).json({
                     ok: false,
