@@ -17,6 +17,7 @@ export class CharacterListComponent implements OnInit {
 
   // Variable para almacenar los personajes
   characters: Character[] = [];
+  charactersName: string[] = [];
 
   // Variable para mostrar el spinner de carga
   loading: boolean = true;
@@ -45,12 +46,14 @@ export class CharacterListComponent implements OnInit {
             } else {
               // Si no hay personajes, vaciamos el array y ponemos el total a 0
               this.characters = [];
+              this.charactersName = [];
               this.totalCharacters = 0;
             }
           } else {
             // Si hay personajes, los cargamos
             this.loading = false;
             this.characters = data.data.results;
+            this.charactersName = data.data.results.name;
             this.totalCharacters = data.data.total;
             //console.log(this.characters);
           }
@@ -74,5 +77,9 @@ export class CharacterListComponent implements OnInit {
         ? (pagina - 1) * this.registrosporpagina
         : 0;
     this.getCharacter();
+  }
+
+  search(event: any) {
+    console.log(event);
   }
 }

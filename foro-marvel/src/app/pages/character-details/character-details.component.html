@@ -2,19 +2,17 @@
 </mat-progress-spinner>
 
 <ng-container *ngIf="isLocalCharacter && !loading">
-  <p>{{ character.id }}</p>
   <p>{{ character.name }}</p>
   <p>{{ character.description }}</p>
-  <img [src]="character.thumbnail" alt="character.name" />
+  <img [src]="character.thumbnail" [alt]="character.name" />
 </ng-container>
 
 <ng-container *ngIf="!isLocalCharacter && !loading">
-  <p>{{ character.id }}</p>
   <p>{{ character.name }}</p>
   <p>{{ character.description }}</p>
   <img
     [src]="character.thumbnail.path + '.' + character.thumbnail.extension"
-    alt="character.name" />
+    [alt]="character.name" />
   <h2>Eventos</h2>
   <ul>
     <li *ngFor="let event of events">

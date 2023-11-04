@@ -1,13 +1,29 @@
 const db = require('../db/connectionSQLite');
 
 const getCharacters = async (req, res) => {
+    const limit = Number(req.query.limit) || 10;
+    const offset = Number(req.query.offset) || 0;
+    let total = 0;
     try {
-        sql = `SELECT * FROM Character`;
-        // const queryObject = url.parse(req.url,true).query; //query parameters
-        // if (queryObject.offset && queryObject.limit) {
-        //     sql += ` WHERE ${queryObject.offset} LIKE '%${queryObject.limit}'`;
-        // }
-        db.all(sql, [], (error, rows) => {
+        //Obtener todas las filas de la tabla Character
+        db.all('SELECT * FROM Character', [], (error, rows) => {
+            if (error) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: error.message || "Error al obtener el personaje"
+                });
+            }
+            if (rows.length < 1) {
+                return res.status(200).json({
+                    ok: true,
+                    msg: 'No hay personajes'
+                });
+            }
+            total = rows.length;
+        });
+
+        sql = `SELECT * FROM Character LIMIT ? OFFSET ?;`;
+        db.all(sql, [limit, offset], (error, rows) => {
             if (error) {
                 return res.status(400).json({
                     ok: false,
@@ -23,6 +39,7 @@ const getCharacters = async (req, res) => {
             res.status(200).json({ 
                 ok: true,
                 msg: 'Acción realizada con éxito.',
+                total: total,
                 character: rows
             });
         });

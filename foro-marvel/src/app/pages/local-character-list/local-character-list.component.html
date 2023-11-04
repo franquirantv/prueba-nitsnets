@@ -11,12 +11,12 @@
 
 <ng-container *ngIf="!loading">
   <app-character [characters]="displayCharacters"></app-character>
-  <!-- <app-pagination
+  <app-pagination
     (cambiarPagina)="cambiarPagina($event)"
     [texto]="true"
     [totalRegistros]="totalCharacters"
     [registroActual]="posicionactual + 1"
-    [registrosPorPagina]="registrosporpagina"></app-pagination> -->
+    [registrosPorPagina]="registrosporpagina"></app-pagination>
 </ng-container>
 
 <!-- The Modal -->
@@ -25,7 +25,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Añadir personaje</h5>
-        <button type="button" class="close" data-dismiss="modal">
+        <button
+          type="button"
+          id="close-modal"
+          class="close"
+          data-dismiss="modal">
           &times;
         </button>
       </div>
@@ -37,12 +41,21 @@
           <div class="mb-3">
             <label for="inputName1" class="form-label">Nombre</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="inputName1"
               aria-describedby="nameHelp"
               placeholder="Batman, Spiderman, Iron-man..."
-              maxlength="30" />
+              maxlength="30"
+              formControlName="name" />
+            <div
+              *ngIf="
+                addCharacterForm.get('name')?.hasError('required') &&
+                (addCharacterForm.get('name')?.touched || submitted)
+              "
+              class="error-message">
+              El nombre es obligatorio.
+            </div>
             <div id="nameHelp" class="form-text">
               Como máximo 30 caracteres.
             </div>
@@ -57,6 +70,7 @@
               maxlength="200"
               rows="1"
               (input)="autoGrow($event)"
+              formControlName="description"
               aria-describedby="nameHelp"></textarea>
             <div id="descriptionHelp" class="form-text">
               Como máximo 200 caracteres.
@@ -72,7 +86,8 @@
                   accept="image/*"
                   type="file"
                   (change)="readURL($event); showFileName($event)"
-                  class="form-control border-0" />
+                  class="form-control border-0"
+                  formControlName="thumbnail" />
                 <label
                   id="upload-label"
                   for="upload"

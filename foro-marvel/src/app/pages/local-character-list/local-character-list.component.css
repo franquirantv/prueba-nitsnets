@@ -48,3 +48,8 @@ textarea {
 .form-text {
   color: #666
 }
+
+.error-message {
+  color: red;
+}
+

@@ -33,6 +33,8 @@ export class CharacterDetailsComponent implements OnInit {
         (data: any) => {
           console.log(data);
           this.character = data.row;
+          this.character.thumbnail =
+            'assets/uploads/' + this.character.thumbnail;
           // this.comics = this.character.comics.items;
           // this.events = this.character.events.items;
           // this.urls = this.character.urls;

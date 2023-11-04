@@ -1,0 +1,16 @@
+<form>
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar</mat-label>
+    <input matInput placeholder="Batman, Robin..." />
+    <!--[matAutocomplete]="auto"-->
+    <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+    <mat-hint>Hint</mat-hint>
+    <!-- <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete> -->
+  </mat-form-field>
+</form>

@@ -1,5 +1,6 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
+<app-search-bar (searchEvent)="search($event)"></app-search-bar>
 <ng-container *ngIf="!loading">
   <app-character [characters]="characters"></app-character>
   <app-pagination

@@ -18,3 +18,9 @@
   justify-content: start;
   padding-top: 0.6em;
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
