@@ -1,8 +1,15 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
-<app-search-bar (searchEvent)="search($event)"></app-search-bar>
 <ng-container *ngIf="!loading">
-  <app-character [characters]="characters"></app-character>
+  <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  <ng-container *ngIf="totalCharacters > 0; else noCharacters">
+    <app-character [characters]="characters"></app-character>
+  </ng-container>
+  <ng-template #noCharacters>
+    <div class="alert alert-warning" role="alert">
+      No hay personajes que coincidan con tu búsqueda.
+    </div>
+  </ng-template>
   <app-pagination
     (cambiarPagina)="cambiarPagina($event)"
     [texto]="true"

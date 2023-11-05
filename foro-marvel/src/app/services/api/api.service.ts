@@ -17,12 +17,20 @@ export class ApiService {
    * Esta función devuelve un listado de personajes
    * @param {number} offset - número de personajes a saltar
    * @param {number} limit - número de personajes a mostrar
+   * @param {string} nameStartsWith - nombre del personaje a buscar
    * @returns {Observable<any>} - Observable con el listado de personajes
    */
-  getCharacter(offset: number, limit: number): Observable<any> {
+  getCharacter(
+    offset: number,
+    limit: number,
+    nameStartsWith: string
+  ): Observable<any> {
     let address =
       API_URL +
       `characters?ts=${TS}&apikey=${APIKEY}&hash=${HASH}&offset=${offset}&limit=${limit}`;
+    if (nameStartsWith !== '') {
+      address += `&nameStartsWith=${nameStartsWith}`;
+    }
     return this.http.get(address);
   }
 

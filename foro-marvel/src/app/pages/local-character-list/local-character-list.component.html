@@ -1,16 +1,23 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
 
-<button
-  type="button"
-  class="btn btn-primary"
-  data-toggle="modal"
-  data-target="#miModal">
-  Añade un personaje
-</button>
-
 <ng-container *ngIf="!loading">
-  <app-character [characters]="displayCharacters"></app-character>
+  <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#anadirPersonaje">
+    Añade un personaje
+  </button>
+  <ng-container *ngIf="totalCharacters > 0; else noCharacters">
+    <app-character [characters]="displayCharacters"></app-character>
+  </ng-container>
+  <ng-template #noCharacters>
+    <div class="alert alert-warning" role="alert">
+      No hay personajes que coincidan con tu búsqueda.
+    </div>
+  </ng-template>
   <app-pagination
     (cambiarPagina)="cambiarPagina($event)"
     [texto]="true"
@@ -20,7 +27,7 @@
 </ng-container>
 
 <!-- The Modal -->
-<div class="modal" id="miModal">
+<div class="modal" id="anadirPersonaje">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,8 +93,7 @@
                   accept="image/*"
                   type="file"
                   (change)="readURL($event); showFileName($event)"
-                  class="form-control border-0"
-                  formControlName="thumbnail" />
+                  class="form-control border-0" />
                 <label
                   id="upload-label"
                   for="upload"

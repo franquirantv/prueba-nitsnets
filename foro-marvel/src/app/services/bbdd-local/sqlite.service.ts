@@ -14,10 +14,16 @@ export class SqliteService {
    * Esta función devuelve un listado de personajes
    * @returns {Observable<any>} - Observable con el listado de personajes
    */
-  getCharacter(offset: number, limit: number): Observable<any> {
+  getCharacter(
+    offset: number,
+    limit: number,
+    nameStartsWith: string
+  ): Observable<any> {
     let address = API_URL + 'characters';
-    if (offset !== null && limit !== null) {
-      address = address + `?offset=${offset}&limit=${limit}`;
+    if (offset !== null && limit !== null && nameStartsWith !== null) {
+      address =
+        address +
+        `?offset=${offset}&limit=${limit}&nameStartsWith=${nameStartsWith}`;
     }
     return this.http.get(address);
   }
@@ -47,8 +53,8 @@ export class SqliteService {
    * @param {any} character - personaje a actualizar
    * @returns {Observable<any>} - Observable con el personaje
    */
-  updateCharacter(character: any): Observable<any> {
-    let address = API_URL + 'characters';
+  updateCharacter(character: any, id: number): Observable<any> {
+    let address = API_URL + `characters/${id}`;
     return this.http.put(address, character);
   }
 

@@ -14,18 +14,18 @@ router.get('/', [
 
 router.get('/:id', [
     check('id', 'El id es obligatorio').not().isEmpty(),
-    validarCampos
+    // validarCampos
 ], getCharactersById);
 
 router.post('/', [
     check('name', 'El nombre es obligatorio').not().isEmpty(),
-    validarCampos
+    // validarCampos
 ], createCharacters);
 
 router.put('/:id', [
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('name', 'El nombre es obligatorio').not().isEmpty(),
-    validarCampos
+    // validarCampos
 ], updateCharacters);
 
 router.delete('/:id', [

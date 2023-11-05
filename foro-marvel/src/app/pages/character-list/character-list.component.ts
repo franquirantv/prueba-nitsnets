@@ -22,6 +22,9 @@ export class CharacterListComponent implements OnInit {
   // Variable para mostrar el spinner de carga
   loading: boolean = true;
 
+  // Variable para el buscador
+  searchTerm: string = '';
+
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
     this.getCharacter();
@@ -31,7 +34,11 @@ export class CharacterListComponent implements OnInit {
   getCharacter() {
     this.loading = true;
     this.api
-      .getCharacter(this.posicionactual, this.registrosporpagina)
+      .getCharacter(
+        this.posicionactual,
+        this.registrosporpagina,
+        this.searchTerm
+      )
       .subscribe(
         (data: any) => {
           // Comprobamos si estamos en una página vacia, si es así entonces retrocedemos una página si se puede
@@ -48,6 +55,7 @@ export class CharacterListComponent implements OnInit {
               this.characters = [];
               this.charactersName = [];
               this.totalCharacters = 0;
+              this.loading = false;
             }
           } else {
             // Si hay personajes, los cargamos
@@ -79,7 +87,9 @@ export class CharacterListComponent implements OnInit {
     this.getCharacter();
   }
 
-  search(event: any) {
-    console.log(event);
+  onSearch(searchTerm: string): void {
+    console.log(`Buscando: ${searchTerm}`);
+    this.searchTerm = searchTerm;
+    this.getCharacter();
   }
 }

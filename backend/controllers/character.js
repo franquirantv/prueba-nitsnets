@@ -3,27 +3,26 @@ const db = require('../db/connectionSQLite');
 const getCharacters = async (req, res) => {
     const limit = Number(req.query.limit) || 10;
     const offset = Number(req.query.offset) || 0;
+    const nameStartsWith = req.query.nameStartsWith || '';
     let total = 0;
+    
     try {
-        //Obtener todas las filas de la tabla Character
-        db.all('SELECT * FROM Character', [], (error, rows) => {
-            if (error) {
-                return res.status(400).json({
-                    ok: false,
-                    msg: error.message || "Error al obtener el personaje"
-                });
-            }
-            if (rows.length < 1) {
-                return res.status(200).json({
-                    ok: true,
-                    msg: 'No hay personajes'
-                });
-            }
-            total = rows.length;
+        const match = nameStartsWith + '%';
+
+        // Obtener el total de personajes que coinciden con el filtro
+        total = await new Promise((resolve, reject) => {
+            db.all('SELECT COUNT(*) as total FROM Character WHERE name LIKE ?', [match], (error, rows) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(rows[0].total);
+                }
+            });
         });
 
-        sql = `SELECT * FROM Character LIMIT ? OFFSET ?;`;
-        db.all(sql, [limit, offset], (error, rows) => {
+        // Obtener los personajes limitados y paginados
+        const sql = 'SELECT * FROM Character WHERE name LIKE ? LIMIT ? OFFSET ?;';
+        db.all(sql, [match, limit, offset], (error, rows) => {
             if (error) {
                 return res.status(400).json({
                     ok: false,
@@ -33,10 +32,11 @@ const getCharacters = async (req, res) => {
             if (rows.length < 1) {
                 return res.status(200).json({
                     ok: true,
-                    msg: 'No hay personajes'
+                    msg: 'No hay personajes',
+                    character: []
                 });
             }
-            res.status(200).json({ 
+            res.status(200).json({
                 ok: true,
                 msg: 'Acción realizada con éxito.',
                 total: total,
@@ -50,6 +50,7 @@ const getCharacters = async (req, res) => {
         });
     }
 }
+
 
 const getCharactersById = async (req, res) => {
     try {
@@ -139,23 +140,43 @@ const createCharacters = async (req, res) => {
 const updateCharacters = async (req, res) => {
     try {
         const id = req.params.id;
-        const character = req.body;
+        const {name, description} = req.body;
+        let { thumbnail } = req.body;
         const modified = new Date().toISOString();
+        let extension;
+        console.log('thumbnail: ', thumbnail);
+        
+        if (thumbnail === undefined || thumbnail === null || thumbnail === "") {
+            console.log('thumbnail: ', thumbnail);
+            thumbnail = 'no-image.png';
+        }
+
+        extension = thumbnail.split('.')[1];
+        console.log('thumbnail: ', thumbnail);
+        console.log('extension: ', extension);
+        if (extension == "" || extension == undefined || extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'webp'){
+            return res.status(400).json({
+                ok: false,
+                msg: "El formato de la imagen no es válido",
+            });
+        }
         sql = `UPDATE Character SET name = ?, description = ?, thumbnail = ?, modified = ? WHERE id = ?`;
-        db.run(sql, [character.name, character.description, character.thumbnail, modified, id], function (error) {
+        db.run(sql, [name, description, thumbnail, modified, id], function (error) {
             if (error){
                 return res.status(400).json({
                     ok: false,
                     msg: error.message || 'Error al actualizar el personaje'
                 });
             } 
-            
+
             res.status(200).json({ 
                 ok: true,
                 msg: 'Personaje actualizado con éxito.',
                 character: {
                     id,
-                    ...character,
+                    name,
+                    description,
+                    thumbnail,
                     modified
                 }
             });

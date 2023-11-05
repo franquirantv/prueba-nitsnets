@@ -19,7 +19,7 @@ export class LocalCharacterListComponent implements OnInit {
   public addCharacterForm = this.fb.group({
     name: ['', Validators.required], //se ponene corchetes si vamos a poner varias validaciones
     description: [''],
-    thumbnail: [new File([], '')],
+    // thumbnail: [new File([], '')],
   });
   imageSrc: string | ArrayBuffer | null = '' || 'assets/uploads/no-image.png';
 
@@ -39,6 +39,10 @@ export class LocalCharacterListComponent implements OnInit {
 
   numPersonajesMostrados = 10;
 
+  searchTerm: string = '';
+
+  fileUploaded: File = new File([], '');
+
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
     this.getCharacter();
@@ -48,11 +52,18 @@ export class LocalCharacterListComponent implements OnInit {
   getCharacter() {
     this.loading = true;
     this.sql
-      .getCharacter(this.posicionactual, this.numPersonajesMostrados)
+      .getCharacter(
+        this.posicionactual,
+        this.numPersonajesMostrados,
+        this.searchTerm
+      )
       .subscribe(
         (data: any) => {
+          console.log(data);
           // Comprobamos si estamos en una página vacia, si es así entonces retrocedemos una página si se puede
           if (data.character.length === 0) {
+            console.log('No hay personajes');
+            console.log('Posicion actual: ' + this.posicionactual);
             if (this.posicionactual > 0) {
               this.posicionactual =
                 this.posicionactual - this.registrosporpagina;
@@ -61,9 +72,12 @@ export class LocalCharacterListComponent implements OnInit {
               }
               this.getCharacter();
             } else {
+              console.log('No hay personajes');
               // Si no hay personajes, vaciamos el array y ponemos el total a 0
               this.characters = [];
               this.totalCharacters = 0;
+              this.displayCharacters = [];
+              this.loading = false;
             }
           } else {
             // Si hay personajes, los cargamos
@@ -116,7 +130,7 @@ export class LocalCharacterListComponent implements OnInit {
     if (this.addCharacterForm.valid) {
       this.addCharacterForm.get('name')?.markAsTouched();
 
-      const thumbnail = this.addCharacterForm.get('thumbnail')?.value;
+      const thumbnail = this.fileUploaded;
       const formData = new FormData();
 
       if (thumbnail?.name !== '') {
@@ -135,18 +149,18 @@ export class LocalCharacterListComponent implements OnInit {
       let obj = {
         name: this.addCharacterForm.get('name')?.value,
         description: this.addCharacterForm.get('description')?.value,
-        thumbnail: this.addCharacterForm.get('thumbnail')?.value?.name,
+        thumbnail: this.fileUploaded.name,
       };
       this.sql.addCharacter(obj).subscribe(
         (data: any) => {
           this.addCharacterForm.reset();
           const closeBtn = document.getElementById('close-modal');
           closeBtn?.click();
-          this.getCharacter();
           this._snackBar.open('Personaje añadido con éxito.', 'Cerrar', {
             duration: 5 * 1000,
             panelClass: 'success-snackbar',
           });
+          this.getCharacter();
         },
         (error: any) => {
           console.log(error);
@@ -159,9 +173,9 @@ export class LocalCharacterListComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const file: File = event.target.files[0];
       // mostrar la imagen del file en el preview #imageResult
-      this.addCharacterForm.patchValue({
-        thumbnail: file,
-      });
+      // this.addCharacterForm.patchValue({
+      //   thumbnail: file,
+      // });
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e: any) => (this.imageSrc = e.target.result);
@@ -182,5 +196,11 @@ export class LocalCharacterListComponent implements OnInit {
   autoGrow(element: any) {
     element.target.style.height = '5px';
     element.target.style.height = element.target.scrollHeight + 'px';
+  }
+
+  onSearch(searchTerm: string): void {
+    console.log(`Buscando: ${searchTerm}`);
+    this.searchTerm = searchTerm;
+    this.getCharacter();
   }
 }
