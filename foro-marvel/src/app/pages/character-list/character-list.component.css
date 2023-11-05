@@ -1,0 +1,45 @@
+.display-characters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 20px 0;
+}
+
+p {
+  color: rgb(160, 160, 160)
+}
+
+.centrar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .display-characters {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .display-characters {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .display-characters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media screen and (max-width: 479px) {
+  .display-characters {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+}

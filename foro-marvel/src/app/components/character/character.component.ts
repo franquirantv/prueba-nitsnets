@@ -1,17 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
-  styleUrls: ['./character.component.css'],
+  styleUrls: ['./character.component.scss'],
 })
 export class CharacterComponent implements OnInit {
   constructor() {}
 
-  @Input() characters: Character[] = [];
+  @Input() character: any = {};
+
+  apiCharacter: boolean = false;
 
   ngOnInit(): void {
-    console.log(this.characters);
+    let path = window.location.pathname;
+    this.apiCharacter = !path.includes('personajes-locales') ? true : false;
+    console.log(this.character);
   }
 }

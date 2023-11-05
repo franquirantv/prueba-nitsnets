@@ -1,21 +1,60 @@
-<ng-container *ngFor="let character of characters">
-  <ng-container *ngIf="character">
+<ng-container *ngIf="character">
+  <div class="card-container btn--animation-from-top">
     <a routerLink="/detalles/{{ character.id }}">
-      <h2>{{ character.name }}</h2>
+      <figure class="card-image">
+        <ng-container *ngIf="apiCharacter; else localCharacter">
+          <img
+            [ngSrc]="
+              character.thumbnail.path + '.' + character.thumbnail.extension
+            "
+            alt="Personaje de animación {{ character.name }}"
+            height="450"
+            width="450" />
+        </ng-container>
+        <ng-template #localCharacter>
+          <img
+            [ngSrc]="'assets/uploads/' + character.thumbnail"
+            alt="Personaje de animación {{ character.name }}"
+            height="450"
+            width="450" />
+        </ng-template>
+      </figure>
+      <div class="card-content">
+        <span class="spaced-8">
+          <h2 class="card-title">{{ character.name }}</h2>
+          <p class="card-info">
+            {{
+              character.description ? character.description : 'Sin descripción'
+            }}
+          </p>
+        </span>
+        <div class="btn__text-dynamic">
+          <span class="btn__text-dynamic-inner spaced-8">
+            <h2 class="card-title">{{ character.name }}</h2>
+            <p class="card-info">
+              {{
+                character.description
+                  ? character.description
+                  : 'Sin descripción.'
+              }}
+            </p>
+          </span>
+        </div>
+      </div>
     </a>
-    <figure class="characterImage">
-      <a routerLink="/detalles/{{ character.id }}">
-        <img
-          [ngSrc]="
-            character.thumbnail.path + '.' + character.thumbnail.extension
-          "
-          alt="Personaje de animación {{ character.name }}"
-          height="450"
-          width="450" />
-      </a>
-    </figure>
-  </ng-container>
-  <ng-container *ngIf="!character">
-    No hay resultados de personajes.
-  </ng-container>
+  </div>
 </ng-container>
+<ng-container *ngIf="!character">
+  No hay resultados de personajes.
+</ng-container>
+
+<!-- <div class="gallery">
+  <div class="card">
+    <img src="../../../assets/uploads/alerta-virus.png" alt="Imagen 1" />
+    <h3>Título 1</h3>
+  </div>
+  <div class="card">
+    <img src="../../../assets/uploads/dragonsico1.jpg" alt="Imagen 2" />
+    <h3>Título 2</h3>
+  </div>
+</div> -->

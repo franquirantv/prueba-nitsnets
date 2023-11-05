@@ -1,9 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*{
+  font: 400 16px/1.1 RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
+}
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: #363636;
+}
 
 .mat-mdc-snack-bar-container {
   &.success-snackbar {
@@ -14,3 +21,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-focus-label-text-color: #dc3545 !important;
+  --mdc-outlined-text-field-focus-outline-color: #dc3545 !important;
+  --mdc-outlined-text-field-caret-color: #dc3545 !important;
+  --mat-option-label-text-color: #dc3545 !important;
+  --mdc-outlined-text-field-input-text-color: #dc3545 !important;
+  --mdc-outlined-text-field-hover-outline-color:#dc3545 !important;
+  --mdc-outlined-text-field-outline-color:#dc3545 !important;
+  --mdc-filled-text-field-hover-active-indicator-color: #dc3545 !important;
+  --mdc-filled-text-field-input-text-color: #dc3545 !important;
+  --mat-select-enabled-trigger-text-color: #dc3545 !important;
+  --mdc-outlined-text-field-label-text-color: rgb(160,160,160) !important;
+  --mdc-outlined-text-field-input-text-placeholder-color: rgb(160,160,160) !important;
+}
+
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  caret-color: #dc3545 !important;
+  color: rgb(160, 160, 160) !important;
+  outline-color: rgb(160, 160, 160) !important;
+}
+
+.mat-mdc-button:not(:disabled){
+  color: rgb(160, 160, 160) !important;
+}

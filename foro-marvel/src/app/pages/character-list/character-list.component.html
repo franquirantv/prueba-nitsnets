@@ -1,9 +1,16 @@
 <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
 </mat-progress-spinner>
+
 <ng-container *ngIf="!loading">
+  <!-- <div class="centrar"> -->
   <app-search-bar (search)="onSearch($event)"></app-search-bar>
   <ng-container *ngIf="totalCharacters > 0; else noCharacters">
-    <app-character [characters]="characters"></app-character>
+    <p>{{ totalCharacters }} RESULTADOS</p>
+    <div class="display-characters">
+      <ng-container *ngFor="let character of characters">
+        <app-character [character]="character"></app-character>
+      </ng-container>
+    </div>
   </ng-container>
   <ng-template #noCharacters>
     <div class="alert alert-warning" role="alert">
@@ -16,4 +23,5 @@
     [totalRegistros]="totalCharacters"
     [registroActual]="posicionactual + 1"
     [registrosPorPagina]="registrosporpagina"></app-pagination>
+  <!-- </div> -->
 </ng-container>
