@@ -1,0 +1,133 @@
+.sticky-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.wrapper1200{
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header{
+  background-color: #202020;
+  color: #fff;
+  border-bottom: 1px solid rgb(54, 54, 54);
+}
+.desktop-header{
+  font: 900 12px/1 RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.access-buttons, .logo-marvel{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.access-buttons, .search-button{
+  align-items: center;
+  word-wrap: none;
+  padding: 1em 2em;
+  border-left: 1px solid rgb(54, 54, 54);
+  border-right: 1px solid rgb(54, 54, 54);
+}
+
+.search-button > button > mat-icon{
+  font-size: 24px;
+}
+
+.creditcard img {
+  height: 1.5em;
+  vertical-align: bottom;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-marvel{
+  margin: 0;
+  vertical-align: bottom;
+}
+.logo-marvel svg{
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.header-menu{
+  background-color: #202020;
+  color: #fff;
+}
+.header-menu:hover{
+  color: gray;
+}
+.desktop-header-menu{
+  font: 900 12px/1 RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.item-menu{
+  transition: color 0.3s ease;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 2px;
+  padding: 1em;
+}
+
+.item-menu:first-child:hover{
+  margin-bottom: 0px;
+  color: #fff;
+  border-bottom: 2px solid red;
+}
+.item-menu:nth-child(2):hover{
+  margin-bottom: 0px;
+  color: #fff;
+  border-bottom: 2px solid red;
+}
+.available {
+  cursor: pointer;
+}
+
+.hidden {
+  transform: translateY(-100%);
+}
+
+.hamburger {
+  display: none;
+}
+.remove-on-mobile {
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+
+  .remove-on-mobile {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .header-menu {
+    display: none;
+  }
+}

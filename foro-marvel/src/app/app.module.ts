@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { CharacterComponent } from './components/character/character.component';
 import { CharacterListComponent } from './pages/character-list/character-list.component';
@@ -49,7 +48,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatSnackBarModule,
     MatInputModule,
     MatButtonModule,
-    MatAutocompleteModule,
     NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,

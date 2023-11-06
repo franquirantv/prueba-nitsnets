@@ -2,7 +2,6 @@
 </mat-progress-spinner>
 
 <ng-container *ngIf="!loading">
-  <!-- <div class="centrar"> -->
   <app-search-bar (search)="onSearch($event)"></app-search-bar>
   <ng-container *ngIf="totalCharacters > 0; else noCharacters">
     <p>{{ totalCharacters }} RESULTADOS</p>
@@ -23,5 +22,4 @@
     [totalRegistros]="totalCharacters"
     [registroActual]="posicionactual + 1"
     [registrosPorPagina]="registrosporpagina"></app-pagination>
-  <!-- </div> -->
 </ng-container>
