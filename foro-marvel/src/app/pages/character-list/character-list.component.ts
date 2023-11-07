@@ -18,6 +18,8 @@ export class CharacterListComponent implements OnInit {
   // Variable para almacenar los personajes
   characters: Character[] = [];
   charactersName: string[] = [];
+  comics: any[] = [];
+  eventos: any[] = [];
 
   // Variable para mostrar el spinner de carga
   loading: boolean = true;
@@ -41,6 +43,7 @@ export class CharacterListComponent implements OnInit {
       )
       .subscribe(
         (data: any) => {
+          const characters = data.data.results;
           // Comprobamos si estamos en una página vacia, si es así entonces retrocedemos una página si se puede
           if (data.data.results.length === 0) {
             if (this.posicionactual > 0) {
@@ -59,11 +62,11 @@ export class CharacterListComponent implements OnInit {
             }
           } else {
             // Si hay personajes, los cargamos
+            console.log(characters);
             this.loading = false;
-            this.characters = data.data.results;
-            this.charactersName = data.data.results.name;
+            this.characters = characters;
+            this.charactersName = characters.name;
             this.totalCharacters = data.data.total;
-            //console.log(this.characters);
           }
         },
         (error: any) => {

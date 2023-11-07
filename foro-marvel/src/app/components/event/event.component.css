@@ -1,0 +1,47 @@
+.event-card {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+.event-card-inner {
+  display: flex;
+  width: 100%;
+}
+
+.event-image {
+  width: 40%; /* Ancho de la imagen */
+  padding: 20px;
+}
+
+.event-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.event-details {
+  width: 60%; /* Ancho de los detalles */
+  padding: 20px;
+}
+
+/* Estilos para pantallas móviles */
+@media (max-width: 768px) {
+  .event-card-inner {
+    flex-direction: column;
+  }
+
+  .event-image,
+  .event-details {
+    width: 100%; /* Asegura que ocupen todo el ancho en móviles */
+  }
+
+  .event-image {
+    padding-bottom: 0;
+  }
+
+  .event-description {
+    font-size: 18px;
+  }
+}

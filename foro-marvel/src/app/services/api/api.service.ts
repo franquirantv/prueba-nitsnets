@@ -44,4 +44,27 @@ export class ApiService {
       API_URL + `characters/${id}?ts=${TS}&apikey=${APIKEY}&hash=${HASH}`;
     return this.http.get(address);
   }
+
+  /**
+   * Esta función devuelve un listado de comics ordenados por el parámetro indicado
+   * (añadir un "-" delante para verlos de forma descendente)
+   * @param {any} orderBy - parámetro por el que se ordenarán los comics
+   * @returns {Observable<any>} - Observable con el listado de comics
+   */
+  getComicsOrderedBy(orderBy: string): Observable<any> {
+    let address =
+      API_URL +
+      `comics?ts=${TS}&apikey=${APIKEY}&hash=${HASH}&orderBy=-${orderBy}`;
+    return this.http.get(address);
+  }
+
+  /**
+   * Esta función devuelve un listado de eventos
+   * @returns {Observable<any>} - Observable con el comic
+   */
+  getEvents(): Observable<any> {
+    let address =
+      API_URL + `events?ts=${TS}&apikey=${APIKEY}&hash=${HASH}&limit=100`;
+    return this.http.get(address);
+  }
 }

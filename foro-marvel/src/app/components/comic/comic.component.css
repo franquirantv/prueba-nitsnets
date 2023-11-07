@@ -1,0 +1,17 @@
+.comic-list {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  gap: 16px
+}
+
+.comic-item {
+  min-width: 200px;
+  height: 400px
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: contain
+}

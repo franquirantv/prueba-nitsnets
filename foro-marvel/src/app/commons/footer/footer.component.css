@@ -1,0 +1,20 @@
+footer {
+  background-color: #202020;
+}
+a {
+  color: rgb(234, 30, 30);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  transition: all 0.1s ease-in-out;
+}
+
+.icon:hover {
+  color: rgb(234, 30, 30);
+  transform: scale(1.2);
+}

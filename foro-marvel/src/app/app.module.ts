@@ -24,6 +24,8 @@ import { NavbarComponent } from './commons/navbar/navbar.component';
 import { FooterComponent } from './commons/footer/footer.component';
 import { LocalCharacterListComponent } from './pages/local-character-list/local-character-list.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ComicComponent } from './components/comic/comic.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     FooterComponent,
     LocalCharacterListComponent,
     SearchBarComponent,
+    ComicComponent,
+    EventComponent,
   ],
   imports: [
     BrowserModule,

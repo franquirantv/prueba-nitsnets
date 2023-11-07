@@ -15,6 +15,6 @@ export class CharacterComponent implements OnInit {
   ngOnInit(): void {
     let path = window.location.pathname;
     this.apiCharacter = !path.includes('personajes-locales') ? true : false;
-    console.log(this.character);
+    // console.log(this.character);
   }
 }
