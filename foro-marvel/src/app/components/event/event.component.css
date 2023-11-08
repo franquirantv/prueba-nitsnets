@@ -3,6 +3,7 @@
   display: flex;
   margin-bottom: 20px;
   border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .event-card-inner {
@@ -11,6 +12,7 @@
 }
 
 .event-image {
+  cursor: pointer;
   width: 40%; /* Ancho de la imagen */
   padding: 20px;
 }
@@ -19,6 +21,11 @@
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.event-title:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .event-details {

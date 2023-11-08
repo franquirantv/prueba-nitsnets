@@ -1,6 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
+const enviarArchivo = async (req, res) => {
+
+    const nombreArchivo = req.params.nombreArchivo;
+    const pathArchivo = path.join(__dirname, '..', '..', 'foro-marvel', 'src', 'assets', 'uploads', nombreArchivo);
+    if(!fs.existsSync(pathArchivo)){
+        console.log(`No existe el archivo: ${pathArchivo}`);
+        return res.status(400).json({
+            ok: false,
+            msg: `No se ha encontrado el archivo ${nombreArchivo}.`,
+        });
+    }
+    res.sendFile(pathArchivo);
+}
 
 const subirArchivo = async (req, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -43,7 +56,5 @@ const subirArchivo = async (req, res) => {
         });
     });
 }
-
-const enviarArchivo = async (req, res) => {}
 
 module.exports = { subirArchivo, enviarArchivo }

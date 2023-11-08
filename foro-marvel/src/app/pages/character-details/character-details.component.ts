@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SqliteService } from 'src/app/services/bbdd-local/sqlite.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CharacterDetailsComponent implements OnInit {
   constructor(
     private api: ApiService,
-    private router: ActivatedRoute,
+    private routerActivated: ActivatedRoute,
+    private router: Router,
     private sql: SqliteService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar
@@ -39,7 +40,7 @@ export class CharacterDetailsComponent implements OnInit {
   submitted: boolean = false;
 
   ngOnInit(): void {
-    let id = this.router.snapshot.params['id'];
+    let id = this.routerActivated.snapshot.params['id'];
     this.loadCharacter(id);
   }
 
@@ -88,7 +89,18 @@ export class CharacterDetailsComponent implements OnInit {
   loadFormData(res: any): void {
     this.editCharacterForm.get('name')?.setValue(res['row'].name as never);
     this.editCharacterForm.get('description')?.setValue(res['row'].description);
-    // let newThumbnail = res['row'].thumbnail.replace('assets/uploads/', '');
+    let newThumbnail = res['row'].thumbnail.replace('assets/uploads/', '');
+    // console.log(newThumbnail);
+    this.sql.obtenerImagen(newThumbnail).subscribe(
+      (data: any) => {
+        data.name = newThumbnail;
+        this.fileUploaded = data;
+        console.log(this.fileUploaded);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
     // this.editCharacterForm.get('thumbnail')?.setValue(newThumbnail);
     this.imageSrc = res['row'].thumbnail;
     const infoArea = document.getElementById('upload-label');
@@ -98,14 +110,13 @@ export class CharacterDetailsComponent implements OnInit {
     }
     this.editCharacterForm.markAsPristine();
   }
+
   fileUpdated: boolean = false;
   readURL(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file: File = event.target.files[0];
       // mostrar la imagen del file en el preview #imageResult
-      // this.editCharacterForm.patchValue({
-      //   thumbnail: file,
-      // });
+
       this.fileUploaded = file;
       this.fileUpdated = true;
       const reader = new FileReader();
@@ -139,6 +150,7 @@ export class CharacterDetailsComponent implements OnInit {
       //Si modifica el archivo, Subir archivo
       if (this.fileUpdated) {
         const thumbnailFile = this.fileUploaded;
+        // console.log(thumbnailFile);
         const formData = new FormData();
 
         if (thumbnailFile?.name !== '') {
@@ -146,7 +158,7 @@ export class CharacterDetailsComponent implements OnInit {
 
           this.sql.subirImagen(formData).subscribe(
             (data: any) => {
-              // console.log(data);
+              console.log(data);
             },
             (error: any) => {
               console.log(error);
@@ -155,7 +167,7 @@ export class CharacterDetailsComponent implements OnInit {
         }
       }
 
-      let id = this.router.snapshot.params['id'];
+      let id = this.routerActivated.snapshot.params['id'];
       console.log(this.editCharacterForm.value);
       let obj = {
         name: this.editCharacterForm.get('name')?.value,
@@ -178,5 +190,23 @@ export class CharacterDetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  deleteCharacter() {
+    let id = this.routerActivated.snapshot.params['id'];
+    this.sql.deleteCharacter(id).subscribe(
+      (data: any) => {
+        this._snackBar.open('Personaje eliminado con éxito.', 'Cerrar', {
+          duration: 5 * 1000,
+          panelClass: 'success-snackbar',
+        });
+        // this.loadCharacter(id);
+        this.router.navigate(['/personajes-locales']);
+        console.log(data);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 }

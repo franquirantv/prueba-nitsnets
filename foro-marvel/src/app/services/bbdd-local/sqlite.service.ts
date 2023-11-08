@@ -64,7 +64,7 @@ export class SqliteService {
    * @returns {Observable<any>} - Observable con el personaje
    */
   deleteCharacter(id: number): Observable<any> {
-    let address = API_URL + `${id}`;
+    let address = API_URL + `characters/${id}`;
     return this.http.delete(address);
   }
 
@@ -84,5 +84,16 @@ export class SqliteService {
 
     let address = API_URL + 'upload';
     return this.http.post(address, file, options);
+  }
+
+  /**
+   * Esta función obtiene una imagen de la carpeta uploads
+   * @param {string} nombre - nombre de la imagen a obtener
+   * @returns {Observable<any>} - Observable con la imagen
+   */
+  obtenerImagen(nombre: string): Observable<any> {
+    let address = API_URL + `upload/${nombre}`;
+    // console.log(address);
+    return this.http.get(address, { responseType: 'blob' });
   }
 }

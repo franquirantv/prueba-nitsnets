@@ -4,7 +4,12 @@ main {
   justify-content: center;
   align-items: center;
   color: rgb(160, 160, 160);
-  margin-top: 8em;
+  margin-top: 9em;
 }
 
 
+@media screen and (max-width: 767px) {
+  main {
+    margin-top: 5em;
+  }
+}

@@ -10,6 +10,7 @@ html, body {
 body {
   margin: 0;
   background-color: #363636;
+  max-height: calc(100vh - 120px);
 }
 
 .mat-mdc-snack-bar-container {
@@ -69,3 +70,9 @@ body {
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #dc3545 !important;
 }
+
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+

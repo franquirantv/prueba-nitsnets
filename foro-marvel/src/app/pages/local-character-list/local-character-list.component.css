@@ -45,12 +45,62 @@ textarea {
   max-height: 120px;
 }
 
+.min-height {
+  min-height: calc(100vh - 120px);
+}
+
+.bg-color-1 {
+  background-color: #363636;
+}
+
+.modal-header {
+  border-bottom: 1px solid #717171;
+}
+
+.modal-footer {
+  border-top: 1px solid #717171;
+}
+
+.form-control {
+  color: #ffffff;
+  background-color: #767676;
+}
+.form-control::placeholder {
+  color: #aaaaaa;
+}
+
+.form-label, .modal-title {
+  color: #ffffff;
+}
+
 .form-text {
   color: #666
 }
 
 .error-message {
+  margin-top: 5px;
   color: red;
+}
+
+.btn-location {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+
+.btn-add {
+  background-color: rgb(234, 30, 30);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-add:hover {
+  background-color: rgb(233, 65, 65);
+}
+
+.btn-close {
+  background-color: #fff;
+  color: #000000;
 }
 
 .display-characters {
@@ -60,6 +110,14 @@ textarea {
   gap: 1.5rem;
   margin: 20px 0;
 }
+
+.section-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
 @media screen and (min-width: 1024px) {
   .display-characters {
     grid-template-columns: repeat(4, 1fr);

@@ -1,4 +1,4 @@
-<form class="search-form" (submit)="onSearch($event)" id="search-bar">
+<form class="search-form" (submit)="onSearch($event)">
   <mat-form-field class="w-100" appearance="outline">
     <mat-label>Buscar</mat-label>
     <input
@@ -7,17 +7,8 @@
       [(ngModel)]="searchTerm"
       matInput
       placeholder="Spider-man, Venom..." />
-    <!--[matAutocomplete]="auto"-->
     <button type="submit" matSuffix mat-button>
       <mat-icon>search</mat-icon>
     </button>
-    <!-- <mat-hint>Hint</mat-hint> -->
-    <!-- <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete> -->
   </mat-form-field>
 </form>

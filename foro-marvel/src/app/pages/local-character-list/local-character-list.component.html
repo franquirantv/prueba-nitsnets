@@ -1,46 +1,59 @@
-<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
-</mat-progress-spinner>
+<section class="container min-height">
+  <span class="overlay" *ngIf="loading"></span>
+  <div class="spinner" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="30">
+    </mat-progress-spinner>
+  </div>
 
-<ng-container *ngIf="!loading">
-  <app-search-bar (search)="onSearch($event)"></app-search-bar>
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-toggle="modal"
-    data-target="#anadirPersonaje">
-    Añade un personaje
-  </button>
-  <ng-container *ngIf="totalCharacters > 0; else noCharacters">
+  <h2 id="search-bar" class="section-title">Listado de personajes Extra</h2>
+  <div class="row">
+    <div class="col-10">
+      <app-search-bar (search)="onSearch($event)"></app-search-bar>
+    </div>
+    <div class="col-2 btn-location">
+      <button
+        type="button"
+        class="btn btn-add"
+        matTooltip="Añadir personaje"
+        data-toggle="modal"
+        data-target="#anadirPersonaje">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="!loading">
     <p>{{ totalCharacters }} RESULTADOS</p>
-    <div class="display-characters">
-      <ng-container *ngFor="let character of characters">
-        <app-character [character]="character"></app-character>
-      </ng-container>
-    </div>
+    <ng-container *ngIf="totalCharacters > 0; else noCharacters">
+      <div class="display-characters">
+        <ng-container *ngFor="let character of characters">
+          <app-character [character]="character"></app-character>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #noCharacters>
+      <div class="alert alert-warning" role="alert">
+        No hay personajes que coincidan con tu búsqueda.
+      </div>
+    </ng-template>
+    <app-pagination
+      (cambiarPagina)="cambiarPagina($event)"
+      [texto]="true"
+      [totalRegistros]="totalCharacters"
+      [registroActual]="posicionactual + 1"
+      [registrosPorPagina]="registrosporpagina"></app-pagination>
   </ng-container>
-  <ng-template #noCharacters>
-    <div class="alert alert-warning" role="alert">
-      No hay personajes que coincidan con tu búsqueda.
-    </div>
-  </ng-template>
-  <app-pagination
-    (cambiarPagina)="cambiarPagina($event)"
-    [texto]="true"
-    [totalRegistros]="totalCharacters"
-    [registroActual]="posicionactual + 1"
-    [registrosPorPagina]="registrosporpagina"></app-pagination>
-</ng-container>
+</section>
 
 <!-- The Modal -->
 <div class="modal" id="anadirPersonaje">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content bg-color-1">
       <div class="modal-header">
         <h5 class="modal-title">Añadir personaje</h5>
         <button
           type="button"
           id="close-modal"
-          class="close"
+          class="close text-white"
           data-dismiss="modal">
           &times;
         </button>
@@ -92,7 +105,7 @@
             <div class="col-lg-12 mx-auto">
               <!-- Upload image input-->
               <div
-                class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm rounded">
                 <input
                   id="upload"
                   accept="image/*"
@@ -133,10 +146,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <button type="button" class="btn btn-close" data-dismiss="modal">
           Cerrar
         </button>
-        <button type="submit" form="addCharacter" class="btn btn-primary">
+        <button type="submit" form="addCharacter" class="btn btn-add">
           Guardar cambios
         </button>
       </div>

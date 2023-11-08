@@ -55,5 +55,159 @@ textarea {
 }
 
 .error-message {
+  margin-top: 5px;
   color: red;
+}
+
+
+.bg-color-1 {
+  background-color: #363636;
+}
+
+.modal-header {
+  border-bottom: 1px solid #717171;
+}
+
+.modal-footer {
+  border-top: 1px solid #717171;
+}
+
+.form-control {
+  color: #ffffff;
+  background-color: #767676;
+}
+.form-control::placeholder {
+  color: #aaaaaa;
+}
+
+.form-label, .modal-title {
+  color: #ffffff;
+}
+
+.btn-edit {
+  position: absolute;
+  right: 16px;
+  margin-top: 64px;
+  background-color: rgb(234, 30, 30);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-edit:hover {
+  background-color: rgb(239, 110, 110);
+}
+
+.btn-delete {
+  position: absolute;
+  right: 16px;
+  margin-top: 16px;
+  background-color: rgb(234, 30, 30);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: rgb(239, 110, 110);
+}
+
+.btn-save {
+  background-color: rgb(234, 30, 30);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-save:hover {
+  background-color: rgb(239, 110, 110);
+}
+
+.btn-close {
+  background-color: #fff;
+  color: #000000;
+}
+
+.min-height {
+  min-height: 100vh;
+}
+
+.character-detail {
+  margin-top: -22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-1 {
+  padding: 20px 80px;
+  color: white;
+}
+
+.character-image {
+  order: -1;
+  margin-bottom: 1em;
+}
+
+.character-image img {
+  width: 100vw;
+  height: auto;
+  max-height: 60vh;
+  object-fit: cover;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.layout-urls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 20px 0px 0px 0px;
+  margin: 0;
+}
+
+a:hover {
+  text-decoration-color: #000;
+}
+
+.btn-external {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  background-color: rgb(234, 30, 30);
+  color: #000;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-external:hover {
+  background-color: rgb(239, 110, 110);
+}
+
+.section-2 {
+  background-color: #666;
+  padding: 20px 80px;
+  color: #fff;
+}
+
+.layout-footer-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body-delete {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .character-detail {
+    margin-top: -14px;
+  }
+
+  .layout-urls {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 }

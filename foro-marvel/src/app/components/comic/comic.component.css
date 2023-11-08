@@ -7,11 +7,24 @@
 
 .comic-item {
   min-width: 200px;
-  height: 400px
+  height: 400px;
+  transition: all 0.1s ease-in-out;
 }
 
 img {
   width: 100%;
   height: auto;
   object-fit: contain
+}
+
+.comic-item:hover {
+  cursor: pointer;
+  transform: translateY(-4px);
+}
+
+.comic-title {
+  color: #fff;
+}
+.comic-item:hover .comic-title {
+  color: rgb(234, 30, 30);
 }

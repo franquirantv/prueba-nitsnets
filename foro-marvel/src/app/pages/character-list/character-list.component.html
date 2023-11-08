@@ -5,13 +5,13 @@
       <app-comic></app-comic>
       <h2 class="section-title mt-4">Eventos Destacados</h2>
       <app-event></app-event>
-      <h2 class="section-title mt-4">Listado de personajes</h2>
-      <span class="overlay" *ngIf="loading"></span>
-      <div class="spinner" *ngIf="loading">
-        <mat-progress-spinner mode="indeterminate" diameter="30">
-        </mat-progress-spinner>
-      </div>
+      <h2 id="search-bar" class="section-title mt-4">Listado de personajes</h2>
+      <!-- <span class="overlay" *ngIf="loading"></span> -->
+      <!-- <div class="spinner" *ngIf="loading" > -->
       <app-search-bar (search)="onSearch($event)"></app-search-bar>
+      <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+      </mat-progress-spinner>
+      <!-- </div> -->
       <ng-container *ngIf="!loading">
         <p>{{ totalCharacters }} RESULTADOS</p>
         <ng-container *ngIf="totalCharacters > 0; else noCharacters">

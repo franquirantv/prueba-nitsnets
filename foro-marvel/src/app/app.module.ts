@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { CharacterComponent } from './components/character/character.component';
 import { CharacterListComponent } from './pages/character-list/character-list.component';
@@ -52,6 +53,7 @@ import { EventComponent } from './components/event/event.component';
     MatSnackBarModule,
     MatInputModule,
     MatButtonModule,
+    MatTooltipModule,
     NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,

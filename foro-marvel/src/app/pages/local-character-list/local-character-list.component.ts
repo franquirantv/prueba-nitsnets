@@ -132,7 +132,7 @@ export class LocalCharacterListComponent implements OnInit {
 
       const thumbnail = this.fileUploaded;
       const formData = new FormData();
-
+      console.log(thumbnail);
       if (thumbnail?.name !== '') {
         if (thumbnail) formData.append('files', thumbnail);
 
@@ -176,6 +176,7 @@ export class LocalCharacterListComponent implements OnInit {
       // this.addCharacterForm.patchValue({
       //   thumbnail: file,
       // });
+      this.fileUploaded = file;
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e: any) => (this.imageSrc = e.target.result);

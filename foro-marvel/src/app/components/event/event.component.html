@@ -1,15 +1,25 @@
-<div class="event-card" *ngFor="let evento of eventos">
-  <div class="event-card-inner">
-    <div class="event-image">
-      <img
-        [src]="evento.thumbnail.path + '.' + evento.thumbnail.extension"
-        alt="{{ evento.title }}" />
-    </div>
-    <div class="event-details">
-      <h6>EVENTO</h6>
-      <h2 class="text-white">{{ evento.title }}</h2>
-      <p>Último año de celebración: {{ evento.end | date: 'yyyy' }}</p>
-      <p class="event-description">{{ evento.description }}</p>
+<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+</mat-progress-spinner>
+
+<ng-container *ngIf="!loading">
+  <div class="event-card" *ngFor="let evento of eventos">
+    <div class="event-card-inner">
+      <div class="event-image">
+        <img
+          matTooltip="Página detalles de evento no implementada"
+          [src]="evento.thumbnail.path + '.' + evento.thumbnail.extension"
+          alt="{{ evento.title }}" />
+      </div>
+      <div class="event-details">
+        <h6>EVENTO</h6>
+        <h2
+          matTooltip="Página detalles de evento no implementada"
+          class="event-title text-white">
+          {{ evento.title }}
+        </h2>
+        <p>Último año de celebración: {{ evento.end | date: 'yyyy' }}</p>
+        <p class="event-description">{{ evento.description }}</p>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>

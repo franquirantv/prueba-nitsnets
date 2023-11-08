@@ -1,10 +1,20 @@
-<div class="comic-list">
-  <div class="comic-item" *ngFor="let comic of comics">
-    <img [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" />
-    <div class="comic-title text-white">{{ comic.title }}</div>
-    <div class="comic-title">
-      <!--mostrar el año de la fecha focDate (comic.dates[1].date)-->
-      {{ comic.dates[1].date | date: 'yyyy' }}
+<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+</mat-progress-spinner>
+<ng-container *ngIf="!loading">
+  <div class="comic-list">
+    <div class="comic-item" *ngFor="let comic of comics">
+      <img
+        matTooltip="Página detalles de cómic no implementada"
+        [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" />
+      <p
+        matTooltip="Página detalles de cómic no implementada"
+        class="comic-title">
+        {{ comic.title }}
+      </p>
+      <p>
+        <!--mostrar el año de la fecha focDate (comic.dates[1].date)-->
+        {{ comic.dates[1].date | date: 'yyyy' }}
+      </p>
     </div>
   </div>
-</div>
+</ng-container>
