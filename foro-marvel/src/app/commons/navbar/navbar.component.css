@@ -105,6 +105,7 @@ a {
 
 .icon {
   color: rgb(234, 30, 30);
+  font-size: 25px;
 }
 
 .ml-30 {
@@ -152,8 +153,9 @@ a {
     display: none;
   }
 
-  .item-menu{
+  .item-menu {
     margin-left: 10px;
+    font-size: 25px;
   }
 
   .desktop-header-menu-mobile{
@@ -163,15 +165,15 @@ a {
     align-items: start;
     justify-content: start;
     height: 100%;
-    width: 50%;
+    width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    transition: all 0.5s ease-in-out;
     padding-top: 60px;
+    transition: all 0.5s ease-in-out;
   }
 
 }

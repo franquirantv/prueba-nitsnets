@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SqliteService } from '../../services/bbdd-local/sqlite.service';
 import { Character } from '../../models/character.model';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,16 +12,8 @@ import Swal from 'sweetalert2';
 export class LocalCharacterListComponent implements OnInit {
   constructor(
     private sql: SqliteService,
-    private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private fb: FormBuilder
   ) {}
-
-  public addCharacterForm = this.fb.group({
-    name: ['', Validators.required], //se ponene corchetes si vamos a poner varias validaciones
-    description: [''],
-    // thumbnail: [new File([], '')],
-  });
-  imageSrc: string | ArrayBuffer | null = '' || 'assets/uploads/no-image.png';
 
   // Variables para la paginación
   totalCharacters = 0;
@@ -36,13 +27,9 @@ export class LocalCharacterListComponent implements OnInit {
   // Variable para mostrar el spinner de carga
   loading: boolean = true;
 
-  submitted = false;
-
   numPersonajesMostrados = 10;
 
   searchTerm: string = '';
-
-  fileUploaded: File = new File([], '');
 
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
@@ -128,102 +115,6 @@ export class LocalCharacterListComponent implements OnInit {
         ? (pagina - 1) * this.registrosporpagina
         : 0;
     this.getCharacter();
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.addCharacterForm.valid) {
-      this.addCharacterForm.get('name')?.markAsTouched();
-
-      const thumbnail = this.fileUploaded;
-      const formData = new FormData();
-      console.log(thumbnail);
-      if (thumbnail?.name !== '') {
-        if (thumbnail) formData.append('files', thumbnail);
-
-        this.sql.subirImagen(formData).subscribe(
-          (data: any) => {
-            console.log(data);
-          },
-          (error: any) => {
-            console.log(error);
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'No se ha podido subir la imagen. Inténtelo de nuevo más tarde.',
-            });
-          }
-        );
-      }
-
-      let obj = {
-        name: this.addCharacterForm.get('name')?.value,
-        description: this.addCharacterForm.get('description')?.value,
-        thumbnail: this.fileUploaded.name,
-      };
-      this.sql.addCharacter(obj).subscribe(
-        (data: any) => {
-          this.addCharacterForm.reset();
-          const closeBtn = document.getElementById('close-modal');
-          closeBtn?.click();
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'bottom-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: toast => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
-            icon: 'success',
-            title: 'Personaje añadido con éxito!',
-          });
-          this.getCharacter();
-        },
-        (error: any) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'No se ha podido añadir el personaje. Inténtelo de nuevo más tarde.',
-          });
-          console.log(error);
-        }
-      );
-    }
-  }
-
-  readURL(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const file: File = event.target.files[0];
-      // mostrar la imagen del file en el preview #imageResult
-      // this.addCharacterForm.patchValue({
-      //   thumbnail: file,
-      // });
-      this.fileUploaded = file;
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e: any) => (this.imageSrc = e.target.result);
-    }
-  }
-
-  showFileName(event: any) {
-    const infoArea = document.getElementById('upload-label');
-    let inputEl = event.srcElement;
-    if (inputEl.files[0]) {
-      let fileName = inputEl.files[0].name;
-      if (infoArea !== null) {
-        infoArea.textContent = 'Imagen: ' + fileName;
-      }
-    }
-  }
-
-  autoGrow(element: any) {
-    element.target.style.height = '5px';
-    element.target.style.height = element.target.scrollHeight + 'px';
   }
 
   onSearch(searchTerm: string): void {

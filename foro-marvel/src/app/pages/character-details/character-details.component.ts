@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SqliteService } from 'src/app/services/bbdd-local/sqlite.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -43,6 +43,14 @@ export class CharacterDetailsComponent implements OnInit {
   ngOnInit(): void {
     let id = this.routerActivated.snapshot.params['id'];
     this.loadCharacter(id);
+
+    // Reiniciamos el scroll al cambiar de página
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        // Cuando se completa la navegación, reinicia la posición del scroll
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   loadCharacter(id: number) {

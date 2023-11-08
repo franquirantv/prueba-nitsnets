@@ -1,11 +1,3 @@
-.event-card {
-  width: 100%;
-  display: flex;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
 .event-card-inner {
   display: flex;
   width: 100%;

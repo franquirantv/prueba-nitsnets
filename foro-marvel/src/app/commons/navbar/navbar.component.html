@@ -1,4 +1,8 @@
-<div [ngClass]="{ hidden: isNavbarHidden }" class="sticky-menu">
+<!--En este primer div, se aplica la propiedad hidden solo cuando el menú móvil
+   no está abierto y cuando hace scroll hacia abajo-->
+<div
+  [ngClass]="{ hidden: isNavbarHidden && !isSidebarOpen }"
+  class="sticky-menu">
   <header class="header">
     <div class="desktop-header wrapper1200">
       <div class="access-buttons remove-on-mobile">

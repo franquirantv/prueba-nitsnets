@@ -1,0 +1,6 @@
+.comic-list {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  gap: 16px
+}

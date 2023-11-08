@@ -1,5 +1,3 @@
-
-
 .display-characters {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -10,17 +8,6 @@
 
 p {
   color: rgb(160, 160, 160)
-}
-
-.min-height {
-  min-height: 100vh;
-}
-
-.section-title {
-  color: white;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 1024px) {

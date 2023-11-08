@@ -1,50 +1,14 @@
 <section class="container min-height">
-  <span class="overlay" *ngIf="loading"></span>
-  <div class="spinner" *ngIf="loading">
-    <mat-progress-spinner mode="indeterminate" diameter="30">
-    </mat-progress-spinner>
-  </div>
-
   <h2 id="search-bar" class="section-title">
     Listado de personajes
     <span class="highlighted-text">Extra</span>
   </h2>
-  <div class="row">
-    <div class="col-10">
-      <app-search-bar (search)="onSearch($event)"></app-search-bar>
-    </div>
-    <div class="col-2 btn-location">
-      <button
-        type="button"
-        class="btn btn-add"
-        matTooltip="Añadir personaje"
-        data-toggle="modal"
-        data-target="#anadirPersonaje">
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
-  <ng-container *ngIf="!loading">
-    <p>{{ totalCharacters }} RESULTADOS</p>
-    <ng-container *ngIf="totalCharacters > 0; else noCharacters">
-      <div class="display-characters">
-        <ng-container *ngFor="let character of characters">
-          <app-character [character]="character"></app-character>
-        </ng-container>
-      </div>
-    </ng-container>
-    <ng-template #noCharacters>
-      <div class="alert alert-warning" role="alert">
-        No hay personajes que coincidan con tu búsqueda.
-      </div>
-    </ng-template>
-    <app-pagination
-      (cambiarPagina)="cambiarPagina($event)"
-      [texto]="true"
-      [totalRegistros]="totalCharacters"
-      [registroActual]="posicionactual + 1"
-      [registrosPorPagina]="registrosporpagina"></app-pagination>
-  </ng-container>
+  <p>
+    En esta página puedes añadir tus personajes favoritos de Marvel y se
+    quedarán almacenados.
+  </p>
+
+  <app-local-character-list></app-local-character-list>
 </section>
 
 <!-- The Modal -->

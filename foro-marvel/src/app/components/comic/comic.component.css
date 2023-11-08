@@ -1,10 +1,3 @@
-.comic-list {
-  width: 100%;
-  overflow-x: scroll;
-  display: flex;
-  gap: 16px
-}
-
 .comic-item {
   min-width: 200px;
   height: 400px;
@@ -25,6 +18,7 @@ img {
 .comic-title {
   color: #fff;
 }
+
 .comic-item:hover .comic-title {
   color: rgb(234, 30, 30);
 }

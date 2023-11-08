@@ -1,0 +1,8 @@
+<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
+</mat-progress-spinner>
+
+<ng-container *ngIf="!loading">
+  <div class="event-card" *ngFor="let evento of eventos">
+    <app-event [evento]="evento"></app-event>
+  </div>
+</ng-container>
