@@ -3,6 +3,7 @@ import { SqliteService } from '../../services/bbdd-local/sqlite.service';
 import { Character } from '../../models/character.model';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-local-character-list',
@@ -108,6 +109,11 @@ export class LocalCharacterListComponent implements OnInit {
           //TODO: Mostrar error en pantalla
           console.log(error);
           this.loading = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se han podido cargar los personajes. Inténtelo de nuevo más tarde.',
+          });
         }
       );
   }
@@ -142,6 +148,11 @@ export class LocalCharacterListComponent implements OnInit {
           },
           (error: any) => {
             console.log(error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'No se ha podido subir la imagen. Inténtelo de nuevo más tarde.',
+            });
           }
         );
       }
@@ -156,13 +167,29 @@ export class LocalCharacterListComponent implements OnInit {
           this.addCharacterForm.reset();
           const closeBtn = document.getElementById('close-modal');
           closeBtn?.click();
-          this._snackBar.open('Personaje añadido con éxito.', 'Cerrar', {
-            duration: 5 * 1000,
-            panelClass: 'success-snackbar',
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Personaje añadido con éxito!',
           });
           this.getCharacter();
         },
         (error: any) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se ha podido añadir el personaje. Inténtelo de nuevo más tarde.',
+          });
           console.log(error);
         }
       );

@@ -76,3 +76,27 @@ body {
   display: none !important;
 }
 
+.swal2-popup {
+  background-color: #363636 !important;
+}
+
+.swal2-title{
+  color: #fff !important;
+}
+
+.swal2-html-container {
+  color: #fff !important;
+}
+
+.swal2-confirm  {
+  background-color: rgb(234, 30, 30) !important;
+  color: #000 !important;
+}
+
+.swal2-error {
+  border-color: rgb(234, 30, 30) !important;
+}
+
+.swal2-error [class^=swal2-x-mark-line] {
+  background-color: rgb(234, 30, 30) !important;
+}

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //esto
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,8 @@ import { LocalCharacterListComponent } from './pages/local-character-list/local-
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ComicComponent } from './components/comic/comic.component';
 import { EventComponent } from './components/event/event.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { EventComponent } from './components/event/event.component';
     SearchBarComponent,
     ComicComponent,
     EventComponent,
+    ErrorPageComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import { EventComponent } from './components/event/event.component';
     NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

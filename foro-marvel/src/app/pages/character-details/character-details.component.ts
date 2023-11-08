@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SqliteService } from 'src/app/services/bbdd-local/sqlite.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-character-details',
@@ -55,14 +56,11 @@ export class CharacterDetailsComponent implements OnInit {
           this.character.thumbnail =
             'assets/uploads/' + this.character.thumbnail;
           this.loadFormData(data);
-          // this.comics = this.character.comics.items;
-          // this.events = this.character.events.items;
-          // this.urls = this.character.urls;
-          // this.series = this.character.series.items;
           this.loading = false;
         },
         (error: any) => {
           console.log(error);
+          this.router.navigate(['/404']);
           this.loading = false;
         }
       );
@@ -80,6 +78,7 @@ export class CharacterDetailsComponent implements OnInit {
         (error: any) => {
           //TODO: Mostrar error en pantalla
           console.log(error);
+          this.router.navigate(['/404']);
           this.loading = false;
         }
       );
@@ -98,6 +97,11 @@ export class CharacterDetailsComponent implements OnInit {
         console.log(this.fileUploaded);
       },
       (error: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No se ha podido cargar la imagen. Inténtelo de nuevo más tarde.',
+        });
         console.log(error);
       }
     );
@@ -161,6 +165,11 @@ export class CharacterDetailsComponent implements OnInit {
               console.log(data);
             },
             (error: any) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se ha podido subir la imagen. Inténtelo de nuevo más tarde.',
+              });
               console.log(error);
             }
           );
@@ -178,15 +187,33 @@ export class CharacterDetailsComponent implements OnInit {
         (data: any) => {
           const closeBtn = document.getElementById('close-modal');
           closeBtn?.click();
-          this._snackBar.open('Personaje actualizado con éxito.', 'Cerrar', {
-            duration: 5 * 1000,
-            panelClass: 'success-snackbar',
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Personaje actualizado con éxito!',
           });
           this.loadCharacter(id);
+          this.router.navigate(['/personajes-locales']);
+
           // console.log(data);
         },
         (error: any) => {
           console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se ha podido actualizar el personaje. Inténtelo de nuevo más tarde.',
+          });
         }
       );
     }
@@ -196,9 +223,20 @@ export class CharacterDetailsComponent implements OnInit {
     let id = this.routerActivated.snapshot.params['id'];
     this.sql.deleteCharacter(id).subscribe(
       (data: any) => {
-        this._snackBar.open('Personaje eliminado con éxito.', 'Cerrar', {
-          duration: 5 * 1000,
-          panelClass: 'success-snackbar',
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'bottom-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: 'success',
+          title: 'Personaje eliminado con éxito!',
         });
         // this.loadCharacter(id);
         this.router.navigate(['/personajes-locales']);
@@ -206,6 +244,11 @@ export class CharacterDetailsComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No se ha podido eliminar el personaje. Inténtelo de nuevo más tarde.',
+        });
       }
     );
   }

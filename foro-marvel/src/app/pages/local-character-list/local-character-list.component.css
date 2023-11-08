@@ -118,6 +118,16 @@ textarea {
   margin-bottom: 1rem;
 }
 
+.highlighted-text {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: rgb(234, 30, 30);
+  color: #FFFFFF;
+  padding: 2px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 @media screen and (min-width: 1024px) {
   .display-characters {
     grid-template-columns: repeat(4, 1fr);
