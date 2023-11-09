@@ -1,10 +1,9 @@
-<span class="overlay" *ngIf="loading"></span>
-<div class="spinner" *ngIf="loading">
-  <mat-progress-spinner mode="indeterminate" diameter="30">
-  </mat-progress-spinner>
+<span class="overlay" *ngIf="showLoading$ | async"></span>
+<div class="spinner" *ngIf="showLoading$ | async">
+  <app-loading-spinner></app-loading-spinner>
 </div>
 
-<ng-container *ngIf="!loading">
+<ng-container *ngIf="(showLoading$ | async) === false">
   <div class="row">
     <div class="col-10">
       <app-search-bar (search)="onSearch($event)"></app-search-bar>

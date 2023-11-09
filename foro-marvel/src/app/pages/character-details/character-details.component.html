@@ -1,10 +1,9 @@
 <section class="min-height">
-  <span class="overlay" *ngIf="loading"></span>
-  <div class="spinner" *ngIf="loading">
-    <mat-progress-spinner mode="indeterminate" diameter="30">
-    </mat-progress-spinner>
+  <span class="overlay" *ngIf="showLoading$ | async"></span>
+  <div class="spinner" *ngIf="showLoading$ | async">
+    <app-loading-spinner></app-loading-spinner>
   </div>
-  <ng-container *ngIf="isLocalCharacter && !loading">
+  <ng-container *ngIf="isLocalCharacter && (showLoading$ | async) === false">
     <div class="min-height">
       <button
         type="button"
@@ -37,7 +36,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!isLocalCharacter && !loading">
+  <ng-container *ngIf="!isLocalCharacter && (showLoading$ | async) === false">
     <div class="min-height">
       <div class="character-detail">
         <div class="character-image">

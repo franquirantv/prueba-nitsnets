@@ -3,7 +3,7 @@
     <img
       matTooltip="Página detalles de evento no implementada"
       [src]="evento.thumbnail.path + '.' + evento.thumbnail.extension"
-      alt="{{ evento.title }}" />
+      [alt]="'Portada del evento ' + evento.title" />
   </div>
   <div class="event-details">
     <h6>EVENTO</h6>

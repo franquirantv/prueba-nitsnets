@@ -3,8 +3,12 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SqliteService } from 'src/app/services/bbdd-local/sqlite.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { SharedState } from 'src/app/store/shared/shared.state';
+import { Observable } from 'rxjs';
+import { getLoading } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-character-details',
@@ -18,7 +22,7 @@ export class CharacterDetailsComponent implements OnInit {
     private router: Router,
     private sql: SqliteService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private store: Store<SharedState>
   ) {}
 
   character: any;
@@ -26,7 +30,7 @@ export class CharacterDetailsComponent implements OnInit {
   events: any;
   urls: any;
   series: any;
-  loading: boolean = true;
+  showLoading$: Observable<boolean> | undefined;
   isLocalCharacter: boolean = false;
   fileUploaded: File = new File([], '');
 
@@ -41,6 +45,8 @@ export class CharacterDetailsComponent implements OnInit {
   submitted: boolean = false;
 
   ngOnInit(): void {
+    this.showLoading$ = this.store.select(getLoading);
+
     let id = this.routerActivated.snapshot.params['id'];
     this.loadCharacter(id);
 
@@ -54,6 +60,8 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   loadCharacter(id: number) {
+    this.store.dispatch(setLoadingSpinner({ status: true }));
+
     this.isLocalCharacter = id < 1000 ? true : false;
 
     if (this.isLocalCharacter) {
@@ -64,12 +72,12 @@ export class CharacterDetailsComponent implements OnInit {
           this.character.thumbnail =
             'assets/uploads/' + this.character.thumbnail;
           this.loadFormData(data);
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
         },
         (error: any) => {
           console.log(error);
           this.router.navigate(['/404']);
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
         }
       );
     } else {
@@ -81,13 +89,13 @@ export class CharacterDetailsComponent implements OnInit {
           this.events = this.character.events.items;
           this.urls = this.character.urls;
           this.series = this.character.series.items;
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
         },
         (error: any) => {
           //TODO: Mostrar error en pantalla
           console.log(error);
           this.router.navigate(['/404']);
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
         }
       );
     }

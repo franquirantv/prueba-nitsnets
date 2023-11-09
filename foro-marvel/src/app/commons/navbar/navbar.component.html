@@ -16,7 +16,8 @@
         </button>
       </div>
       <div class="logo">
-        <a routerLink="/">
+        <a routerLink="/inicio">
+          <span class="sr-only">Volver a inicio</span>
           <figure class="logo-marvel">
             <svg
               width="130"
@@ -57,34 +58,34 @@
       </div>
       <ol (click)="closeSidebar()" routerLink="/" class="item-menu available">
         personajes
-        <i
+        <!-- <i
           *ngIf="isSidebarOpen"
           class="fa fa-arrow-right ml-30 icon"
-          aria-hidden="true"></i>
+          aria-hidden="true"></i> -->
       </ol>
       <ol
         (click)="closeSidebar()"
         routerLink="/personajes-locales"
         class="item-menu available">
         extra
-        <i
+        <!-- <i
           *ngIf="isSidebarOpen"
           class="fa fa-arrow-right ml-74 icon"
-          aria-hidden="true"></i>
+          aria-hidden="true"></i> -->
       </ol>
-      <ol class="item-menu">
+      <ol class="item-menu unavailable">
         comics
       </ol>
-      <ol class="item-menu">
+      <ol class="item-menu unavailable">
         películas
       </ol>
-      <ol class="item-menu">
+      <ol class="item-menu unavailable">
         programas tv
       </ol>
-      <ol class="item-menu">
+      <ol class="item-menu unavailable">
         juegos
       </ol>
-      <ol class="item-menu">
+      <ol class="item-menu unavailable">
         noticias
       </ol>
     </div>

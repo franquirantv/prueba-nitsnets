@@ -34,6 +34,10 @@ import { ComicListComponent } from './components/comic-list/comic-list.component
 import { EventListComponent } from './components/event-list/event-list.component';
 import { ExtraComponent } from './pages/extra/extra.component';
 
+import { StoreModule } from '@ngrx/store';
+import { SharedReducer } from './store/shared/shared.reducer';
+import { LoadingSpinnerComponent } from './commons/loading-spinner/loading-spinner.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +56,7 @@ import { ExtraComponent } from './pages/extra/extra.component';
     ComicListComponent,
     EventListComponent,
     ExtraComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { ExtraComponent } from './pages/extra/extra.component';
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
+    StoreModule.forRoot({ shared: SharedReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

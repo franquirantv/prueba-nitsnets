@@ -3,6 +3,11 @@ import { SqliteService } from '../../services/bbdd-local/sqlite.service';
 import { Character } from '../../models/character.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { SharedState } from 'src/app/store/shared/shared.state';
+import { getLoading } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-local-character-list',
@@ -12,7 +17,8 @@ import Swal from 'sweetalert2';
 export class LocalCharacterListComponent implements OnInit {
   constructor(
     private sql: SqliteService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store<SharedState>
   ) {}
 
   // Variables para la paginación
@@ -25,7 +31,7 @@ export class LocalCharacterListComponent implements OnInit {
   displayCharacters: any[] = [];
 
   // Variable para mostrar el spinner de carga
-  loading: boolean = true;
+  showLoading$: Observable<boolean> | undefined;
 
   numPersonajesMostrados = 10;
 
@@ -34,11 +40,12 @@ export class LocalCharacterListComponent implements OnInit {
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
     this.getCharacter();
+    this.showLoading$ = this.store.select(getLoading);
   }
 
   // Función para obtener los personajes
   getCharacter() {
-    this.loading = true;
+    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.sql
       .getCharacter(
         this.posicionactual,
@@ -65,11 +72,11 @@ export class LocalCharacterListComponent implements OnInit {
               this.characters = [];
               this.totalCharacters = 0;
               this.displayCharacters = [];
-              this.loading = false;
+              this.store.dispatch(setLoadingSpinner({ status: false }));
             }
           } else {
             // Si hay personajes, los cargamos
-            this.loading = false;
+            this.store.dispatch(setLoadingSpinner({ status: false }));
             this.characters = data.character;
             this.totalCharacters = data.total;
             this.displayCharacters = []; //Reseteamos el array de personajes a mostrar antes de rellenarlo
@@ -95,7 +102,7 @@ export class LocalCharacterListComponent implements OnInit {
           // Si hay un error, lo mostramos por consola
           //TODO: Mostrar error en pantalla
           console.log(error);
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

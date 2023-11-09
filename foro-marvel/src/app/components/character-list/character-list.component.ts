@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api/api.service';
+import { SharedState } from '../../store/shared/shared.state';
+import { Store } from '@ngrx/store';
+import { getLoading } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-character-list',
@@ -8,7 +13,10 @@ import { ApiService } from 'src/app/services/api/api.service';
   styleUrls: ['./character-list.component.css'],
 })
 export class CharacterListComponent implements OnInit {
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private store: Store<SharedState>
+  ) {}
 
   // Variables para la paginación
   totalCharacters = 0;
@@ -22,19 +30,21 @@ export class CharacterListComponent implements OnInit {
   eventos: any[] = [];
 
   // Variable para mostrar el spinner de carga
-  loading: boolean = true;
+  showLoading$: Observable<boolean> | undefined;
 
   // Variable para el buscador
   searchTerm: string = '';
 
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
+    this.showLoading$ = this.store.select(getLoading);
+
     this.getCharacter();
   }
 
   // Función para obtener los personajes
   getCharacter() {
-    this.loading = true;
+    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.api
       .getCharacter(
         this.posicionactual,
@@ -58,12 +68,12 @@ export class CharacterListComponent implements OnInit {
               this.characters = [];
               this.charactersName = [];
               this.totalCharacters = 0;
-              this.loading = false;
+              this.store.dispatch(setLoadingSpinner({ status: false }));
             }
           } else {
             // Si hay personajes, los cargamos
             console.log(characters);
-            this.loading = false;
+            this.store.dispatch(setLoadingSpinner({ status: false }));
             this.characters = characters;
             this.charactersName = characters.name;
             this.totalCharacters = data.data.total;
@@ -73,7 +83,7 @@ export class CharacterListComponent implements OnInit {
           // Si hay un error, lo mostramos por consola
           //TODO: Mostrar error en pantalla
           console.log(error);
-          this.loading = false;
+          this.store.dispatch(setLoadingSpinner({ status: false }));
         }
       );
   }

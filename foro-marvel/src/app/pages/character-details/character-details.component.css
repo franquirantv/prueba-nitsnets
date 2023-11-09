@@ -197,7 +197,11 @@ a:hover {
   color: white;
   text-align: center;
   padding: 10px;
-  margin: 0;
+}
+
+.modal-body-delete p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {

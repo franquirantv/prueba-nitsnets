@@ -1,7 +1,8 @@
 <div class="comic-item">
   <img
     matTooltip="Página detalles de cómic no implementada"
-    [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" />
+    [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
+    [alt]="'Portada del cómic' + comic.title" />
   <p matTooltip="Página detalles de cómic no implementada" class="comic-title">
     {{ comic.title }}
   </p>

@@ -141,6 +141,10 @@ a {
     display: block;
   }
 
+  .unavailable {
+    color: #666;
+  }
+
   .close-button {
     position: absolute;
     top: 0;
@@ -156,6 +160,7 @@ a {
   .item-menu {
     margin-left: 10px;
     font-size: 25px;
+    align-self: center;
   }
 
   .desktop-header-menu-mobile{

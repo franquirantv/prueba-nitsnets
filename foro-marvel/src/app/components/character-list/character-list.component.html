@@ -1,7 +1,6 @@
 <app-search-bar (search)="onSearch($event)"></app-search-bar>
-<mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="30">
-</mat-progress-spinner>
-<ng-container *ngIf="!loading">
+<app-loading-spinner *ngIf="showLoading$ | async"></app-loading-spinner>
+<ng-container *ngIf="(showLoading$ | async) === false">
   <p>{{ totalCharacters }} RESULTADOS</p>
   <ng-container *ngIf="totalCharacters > 0; else noCharacters">
     <div class="display-characters">
