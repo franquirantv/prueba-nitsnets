@@ -22,3 +22,7 @@ img {
 .comic-item:hover .comic-title {
   color: rgb(234, 30, 30);
 }
+
+a {
+  color: rgb(234, 30, 30);
+}

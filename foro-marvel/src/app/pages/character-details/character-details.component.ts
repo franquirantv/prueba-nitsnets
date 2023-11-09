@@ -85,11 +85,44 @@ export class CharacterDetailsComponent implements OnInit {
         (data: any) => {
           console.log(data.data.results[0]);
           this.character = data.data.results[0];
-          this.comics = this.character.comics.items;
-          this.events = this.character.events.items;
+          this.api
+            .getEventsByURL(this.character.events.collectionURI)
+            .subscribe(
+              (data: any) => {
+                console.log(data.data.results);
+                this.events = data.data.results;
+                this.store.dispatch(setLoadingSpinner({ status: false }));
+              },
+              (error: any) => {
+                console.log(error);
+              }
+            );
+          this.api
+            .getComicsByURL(this.character.comics.collectionURI)
+            .subscribe(
+              (data: any) => {
+                console.log(data.data.results);
+                this.comics = data.data.results;
+                this.store.dispatch(setLoadingSpinner({ status: false }));
+              },
+              (error: any) => {
+                console.log(error);
+              }
+            );
+          this.api
+            .getSeriesByURL(this.character.series.collectionURI)
+            .subscribe(
+              (data: any) => {
+                console.log(data.data.results);
+                this.series = data.data.results;
+                this.store.dispatch(setLoadingSpinner({ status: false }));
+              },
+              (error: any) => {
+                console.log(error);
+              }
+            );
+          console.log('EVENTOS OBTENIDOS POR URL:', this.events);
           this.urls = this.character.urls;
-          this.series = this.character.series.items;
-          this.store.dispatch(setLoadingSpinner({ status: false }));
         },
         (error: any) => {
           //TODO: Mostrar error en pantalla

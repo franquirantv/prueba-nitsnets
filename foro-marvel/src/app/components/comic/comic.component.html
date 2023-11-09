@@ -1,11 +1,14 @@
 <div class="comic-item">
-  <img
-    matTooltip="Página detalles de cómic no implementada"
-    [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
-    [alt]="'Portada del cómic' + comic.title" />
-  <p matTooltip="Página detalles de cómic no implementada" class="comic-title">
-    {{ comic.title }}
-  </p>
+  <a target="_blank" [href]="comic.urls[0].url">
+    <img
+      [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
+      [alt]="'Portada del cómic' + comic.title" />
+  </a>
+  <a target="_blank" [href]="comic.urls[0].url">
+    <p class="comic-title">
+      {{ comic.title }}
+    </p>
+  </a>
   <p>
     <!--mostrar el año de la fecha focDate (comic.dates[1].date)-->
     {{ comic.dates[1].date | date: 'yyyy' }}

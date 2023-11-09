@@ -204,6 +204,22 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.comic-list {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  gap: 16px;
+}
+
+.event-card {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+
 @media (max-width: 768px) {
   .character-detail {
     margin-top: -14px;

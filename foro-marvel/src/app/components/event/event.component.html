@@ -1,17 +1,18 @@
 <div class="event-card-inner">
   <div class="event-image">
-    <img
-      matTooltip="Página detalles de evento no implementada"
-      [src]="evento.thumbnail.path + '.' + evento.thumbnail.extension"
-      [alt]="'Portada del evento ' + evento.title" />
+    <a target="_blank" [href]="evento.urls[0].url">
+      <img
+        [src]="evento.thumbnail.path + '.' + evento.thumbnail.extension"
+        [alt]="'Portada del evento ' + evento.title" />
+    </a>
   </div>
   <div class="event-details">
     <h6>EVENTO</h6>
-    <h2
-      matTooltip="Página detalles de evento no implementada"
-      class="event-title text-white">
-      {{ evento.title }}
-    </h2>
+    <a target="_blank" [href]="evento.urls[0].url">
+      <h2 class="event-title text-white mb-4">
+        {{ evento.title }}
+      </h2>
+    </a>
     <p>Último año de celebración: {{ evento.end | date: 'yyyy' }}</p>
     <p class="event-description">{{ evento.description }}</p>
   </div>

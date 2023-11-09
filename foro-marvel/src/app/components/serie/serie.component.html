@@ -1,0 +1,20 @@
+<div class="serie-card-inner">
+  <div class="serie-image">
+    <a target="_blank" [href]="serie.urls[0].url">
+      <img
+        [src]="serie.thumbnail.path + '.' + serie.thumbnail.extension"
+        [alt]="'Portada del serie ' + serie.title" />
+    </a>
+  </div>
+  <div class="serie-details">
+    <h6>SERIE</h6>
+    <a target="_blank" [href]="serie.urls[0].url">
+      <h2 class="serie-title text-white mb-4">
+        {{ serie.title }}
+      </h2>
+    </a>
+    <p class="serie-description">
+      {{ serie.description || 'Sin descripción' }}
+    </p>
+  </div>
+</div>

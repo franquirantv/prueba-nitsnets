@@ -59,12 +59,42 @@ export class ApiService {
   }
 
   /**
+   * Esta función devuelve el listado de comics de un personaje
+   * @param {string} url - url de la petición para obtener los comics relacionados
+   * @returns {Observable<any>} - Observable con la serie
+   */
+  getComicsByURL(url: string): Observable<any> {
+    let address = `${url}?ts=${TS}&apikey=${APIKEY}&hash=${HASH}`;
+    return this.http.get(address);
+  }
+
+  /**
    * Esta función devuelve un listado de eventos
    * @returns {Observable<any>} - Observable con el comic
    */
   getEvents(): Observable<any> {
     let address =
       API_URL + `events?ts=${TS}&apikey=${APIKEY}&hash=${HASH}&limit=100`;
+    return this.http.get(address);
+  }
+
+  /**
+   * Esta función devuelve el listado de eventos de un personaje
+   * @param {string} url - url de la petición para obtener los eventos relacionados
+   * @returns {Observable<any>} - Observable con la serie
+   */
+  getEventsByURL(url: string): Observable<any> {
+    let address = `${url}?ts=${TS}&apikey=${APIKEY}&hash=${HASH}`;
+    return this.http.get(address);
+  }
+
+  /**
+   * Esta función devuelve el listado de series de un personaje
+   * @param {string} url - url de la petición para obtener las series relacionados
+   * @returns {Observable<any>} - Observable con la serie
+   */
+  getSeriesByURL(url: string): Observable<any> {
+    let address = `${url}?ts=${TS}&apikey=${APIKEY}&hash=${HASH}`;
     return this.http.get(address);
   }
 }

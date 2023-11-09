@@ -37,6 +37,7 @@ import { ExtraComponent } from './pages/extra/extra.component';
 import { StoreModule } from '@ngrx/store';
 import { SharedReducer } from './store/shared/shared.reducer';
 import { LoadingSpinnerComponent } from './commons/loading-spinner/loading-spinner.component';
+import { SerieComponent } from './components/serie/serie.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoadingSpinnerComponent } from './commons/loading-spinner/loading-spinn
     EventListComponent,
     ExtraComponent,
     LoadingSpinnerComponent,
+    SerieComponent,
   ],
   imports: [
     BrowserModule,
