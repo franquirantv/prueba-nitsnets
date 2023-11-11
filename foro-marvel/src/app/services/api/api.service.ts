@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 const TS = '1';
-const APIKEY = '0f46da934e90d1a291101879b792c031';
-const HASH = '638db17e901c7f9c5820a0e13a37834b';
+const APIKEY = environment.apiKey;
+const HASH = environment.hash;
 const API_URL = `https://gateway.marvel.com:443/v1/public/`;
 
 @Injectable({

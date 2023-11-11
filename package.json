@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@ngrx/store": "^16.3.0"
-  }
-}

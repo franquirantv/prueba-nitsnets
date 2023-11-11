@@ -93,6 +93,8 @@ export class ExtraComponent implements OnInit {
             title: 'Personaje añadido con éxito!',
           });
           this.childComponent.getCharacter(); // Recargar la lista de personajes
+          // Vaciar el archivo subido en fileUpdated
+          this.fileUploaded = new File([], '');
         },
         (error: any) => {
           Swal.fire({
