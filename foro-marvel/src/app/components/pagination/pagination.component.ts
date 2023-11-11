@@ -80,13 +80,20 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   cambiaPagina(nueva: number) {
     this.cambiarPagina.emit(nueva);
-    this.gotoTop();
+    // this.gotoTop();
+    this.goToSearch();
   }
 
   gotoTop() {
     window.scroll({
-      top: 0,
+      top: 20,
       left: 0,
+      behavior: 'smooth',
+    });
+  }
+  goToSearch() {
+    // Scroll to element with id search
+    document.getElementById('search-bar')?.scrollIntoView({
       behavior: 'smooth',
     });
   }

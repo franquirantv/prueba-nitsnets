@@ -23,8 +23,10 @@
       </button>
       <div class="character-detail">
         <div class="section-1">
-          <h2>{{ character.name }}</h2>
-          <p>{{ character.description || 'Sin descripción.' }}</p>
+          <div class="container">
+            <h2>{{ character.name }}</h2>
+            <p>{{ character.description || 'Sin descripción.' }}</p>
+          </div>
         </div>
         <div class="character-image">
           <img
@@ -48,58 +50,68 @@
             [alt]="character.name" />
         </div>
         <section class="section-1">
-          <h2 class="mb-5">{{ character.name }}</h2>
-          <p>{{ character.description || 'Sin descripción.' }}</p>
+          <div class="container">
+            <h2 class="mb-5">{{ character.name }}</h2>
+            <p>{{ character.description || 'Sin descripción.' }}</p>
+          </div>
         </section>
         <section class="section-2">
-          <h2>Eventos</h2>
-          <ul style="list-style: none">
-            <li class="event-card" *ngFor="let event of events">
-              <app-event [evento]="event"></app-event>
-            </li>
-            <li *ngIf="events.length < 1">
-              <p>No hay eventos para mostrar.</p>
-            </li>
-          </ul>
+          <div class="container">
+            <h2 class="mb-4 section-title">Eventos</h2>
+            <ul style="list-style: none">
+              <li class="event-card" *ngFor="let event of events">
+                <app-event [evento]="event"></app-event>
+              </li>
+              <li *ngIf="events.length < 1">
+                <p>No hay eventos para mostrar.</p>
+              </li>
+            </ul>
+          </div>
         </section>
         <section class="section-1">
-          <h2>Series</h2>
-          <ul style="list-style: none">
-            <li class="event-card" *ngFor="let serie of series">
-              <app-serie [serie]="serie"></app-serie>
-            </li>
-            <li *ngIf="series.length < 1">
-              <p>No hay series para mostrar.</p>
-            </li>
-          </ul>
+          <div class="container">
+            <h2 class="mb-4 section-title">Series</h2>
+            <ul style="list-style: none">
+              <li class="event-card" *ngFor="let serie of series">
+                <app-serie [serie]="serie"></app-serie>
+              </li>
+              <li *ngIf="series.length < 1">
+                <p>No hay series para mostrar.</p>
+              </li>
+            </ul>
+          </div>
         </section>
         <section class="section-2">
-          <h2>Comics</h2>
-          <ul style="list-style: none">
-            <li>
-              <div class="comic-list">
-                <app-comic
-                  [comic]="comic"
-                  *ngFor="let comic of comics"></app-comic>
-              </div>
-            </li>
-            <li *ngIf="comics.length < 1">
-              <p>No hay comics para mostrar.</p>
-            </li>
-          </ul>
+          <div class="container">
+            <h2 class="mb-4 section-title">Comics</h2>
+            <ul style="list-style: none">
+              <li>
+                <div class="comic-list">
+                  <app-comic
+                    [comic]="comic"
+                    *ngFor="let comic of comics"></app-comic>
+                </div>
+              </li>
+              <li *ngIf="comics.length < 1">
+                <p>No hay comics para mostrar.</p>
+              </li>
+            </ul>
+          </div>
         </section>
         <section class="section-1">
-          <h2>Links Externos</h2>
-          <ul class="layout-urls">
-            <li *ngFor="let url of urls">
-              <a target="_blank" [href]="url.url">
-                <button class="btn btn-external">
-                  {{ url.type }}
-                  <i class="fa fa-external-link" aria-hidden="true"></i>
-                </button>
-              </a>
-            </li>
-          </ul>
+          <div class="container">
+            <h2 class="mb-4 section-title">Links Externos</h2>
+            <ul class="layout-urls">
+              <li *ngFor="let url of urls">
+                <a target="_blank" [href]="url.url">
+                  <button class="btn btn-external">
+                    {{ url.type }}
+                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                  </button>
+                </a>
+              </li>
+            </ul>
+          </div>
         </section>
       </div>
     </div>

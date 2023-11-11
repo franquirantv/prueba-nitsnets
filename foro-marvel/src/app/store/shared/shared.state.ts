@@ -1,7 +1,13 @@
 export interface SharedState {
-  showLoading: boolean;
+  showLoadingComics: boolean;
+  showLoadingEvents: boolean;
+  showLoadingDetails: boolean;
+  showLoadingCharacters: boolean;
 }
 
 export const initialSharedState: SharedState = {
-  showLoading: false,
+  showLoadingComics: false,
+  showLoadingEvents: false,
+  showLoadingDetails: false,
+  showLoadingCharacters: false,
 };

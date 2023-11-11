@@ -1,6 +1,6 @@
 .display-characters {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: 1.5rem;
   margin: 20px 0;
@@ -12,7 +12,7 @@ p {
 
 @media screen and (min-width: 1024px) {
   .display-characters {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
 }

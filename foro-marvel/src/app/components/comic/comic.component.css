@@ -1,21 +1,31 @@
 .comic-item {
+  display: flex;
+  flex-direction: column;
   min-width: 200px;
-  height: 400px;
+  min-height: 400px;
   transition: all 0.1s ease-in-out;
+  max-width: 50%;
+  gap: 16px;
 }
 
 img {
   width: 100%;
   height: auto;
-  object-fit: contain
+  object-fit: contain;
+  transition: all 0.1s ease-in-out;
+}
+
+.comic-item:hover img{
+  transform: translateY(-4px);
 }
 
 .comic-item:hover {
   cursor: pointer;
-  transform: translateY(-4px);
 }
 
 .comic-title {
+  font-size: 1rem;
+  margin: 0;
   color: #fff;
 }
 
@@ -23,6 +33,15 @@ img {
   color: rgb(234, 30, 30);
 }
 
+.comic-date {
+  color: #a6a6a6;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 a {
   color: rgb(234, 30, 30);
 }
+
+
+

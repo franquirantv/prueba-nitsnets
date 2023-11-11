@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api/api.service';
-import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
-import { getLoading } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinnerForEvents } from 'src/app/store/shared/shared.action';
+import { getLoadingEvents } from 'src/app/store/shared/shared.selector';
 import { SharedState } from 'src/app/store/shared/shared.state';
 
 @Component({
@@ -22,14 +22,14 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     // Cargamos los eventos al iniciar el componente
-    this.showLoading$ = this.store.select(getLoading);
+    this.showLoading$ = this.store.select(getLoadingEvents);
     this.getEvents();
   }
 
   // Función para obtener los eventos, filtrando por los 5 primeros
   // que mayor tiempo se han celebrado o se van a celebrar
   getEvents() {
-    this.store.dispatch(setLoadingSpinner({ status: true }));
+    this.store.dispatch(setLoadingSpinnerForEvents({ status: true }));
     this.api.getEvents().subscribe(
       (data: any) => {
         const eventos = data.data.results;
@@ -48,11 +48,11 @@ export class EventListComponent implements OnInit {
         // añadir los 5 primeros al this.eventos
         this.eventos = eventos.slice(0, 5);
         console.log('eventos', this.eventos);
-        this.store.dispatch(setLoadingSpinner({ status: false }));
+        this.store.dispatch(setLoadingSpinnerForEvents({ status: false })); // Finalizar carga
       },
       (error: any) => {
         console.log(error);
-        this.store.dispatch(setLoadingSpinner({ status: false }));
+        this.store.dispatch(setLoadingSpinnerForEvents({ status: false })); // Finalizar carga
       }
     );
   }

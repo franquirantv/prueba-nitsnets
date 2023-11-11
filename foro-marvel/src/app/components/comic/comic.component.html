@@ -4,13 +4,15 @@
       [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension"
       [alt]="'Portada del cómic' + comic.title" />
   </a>
-  <a target="_blank" [href]="comic.urls[0].url">
-    <p class="comic-title">
-      {{ comic.title }}
+  <div class="comic-info">
+    <a target="_blank" [href]="comic.urls[0].url">
+      <p class="comic-title">
+        {{ comic.title }}
+      </p>
+    </a>
+    <p class="comic-date" *ngIf="comic.dates[1].date && year > 1">
+      <!--mostrar el año de la fecha focDate (comic.dates[1].date)-->
+      {{ year }}
     </p>
-  </a>
-  <p>
-    <!--mostrar el año de la fecha focDate (comic.dates[1].date)-->
-    {{ comic.dates[1].date | date: 'yyyy' }}
-  </p>
+  </div>
 </div>

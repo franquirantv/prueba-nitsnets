@@ -14,6 +14,8 @@
       </h2>
     </a>
     <p>Último año de celebración: {{ evento.end | date: 'yyyy' }}</p>
-    <p class="event-description">{{ evento.description }}</p>
+    <p class="event-description">
+      {{ evento.description || 'Sin descripción.' }}
+    </p>
   </div>
 </div>

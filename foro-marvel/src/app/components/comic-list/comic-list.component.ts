@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getLoading } from 'src/app/store/shared/shared.selector';
-import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
+import { getLoadingComics } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinnerForComics } from 'src/app/store/shared/shared.action';
 import { SharedState } from 'src/app/store/shared/shared.state';
 
 @Component({
@@ -22,19 +22,19 @@ export class ComicListComponent implements OnInit {
 
   ngOnInit(): void {
     // Cargamos los comics al iniciar el componente
-    this.showLoading$ = this.store.select(getLoading);
+    this.showLoading$ = this.store.select(getLoadingComics);
     this.getComics();
   }
 
   // Función para obtener los comics más recientes
   getComics() {
     // this.loading = true;
-    this.store.dispatch(setLoadingSpinner({ status: true }));
+    this.store.dispatch(setLoadingSpinnerForComics({ status: true }));
     this.api.getComicsOrderedBy('focDate').subscribe(
       (data: any) => {
         const comics = data.data.results;
         // this.loading = false;
-        this.store.dispatch(setLoadingSpinner({ status: false }));
+        this.store.dispatch(setLoadingSpinnerForComics({ status: false })); // Finalizar carga
         // Si el año de focDate (comics.dates[1].date) es menor o igual al año actual, lo añadimos al array
         // Si la portada (comics.thumbnail.path) contiene 'image_not_available', no lo añadimos al array
         for (let i = 0; i < comics.length; i++) {
@@ -51,7 +51,7 @@ export class ComicListComponent implements OnInit {
       (error: any) => {
         console.log(error);
         // this.loading = false;
-        this.store.dispatch(setLoadingSpinner({ status: false }));
+        this.store.dispatch(setLoadingSpinnerForComics({ status: false })); // Finalizar carga
       }
     );
   }

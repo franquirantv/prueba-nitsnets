@@ -4,8 +4,8 @@ import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api/api.service';
 import { SharedState } from '../../store/shared/shared.state';
 import { Store } from '@ngrx/store';
-import { getLoading } from 'src/app/store/shared/shared.selector';
-import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
+import { getLoadingCharacters } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinnerForCharacters } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-character-list',
@@ -37,14 +37,14 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     // Cargamos los personajes al iniciar el componente
-    this.showLoading$ = this.store.select(getLoading);
+    this.showLoading$ = this.store.select(getLoadingCharacters);
 
     this.getCharacter();
   }
 
   // Función para obtener los personajes
   getCharacter() {
-    this.store.dispatch(setLoadingSpinner({ status: true }));
+    this.store.dispatch(setLoadingSpinnerForCharacters({ status: true })); // Iniciar carga
     this.api
       .getCharacter(
         this.posicionactual,
@@ -68,12 +68,16 @@ export class CharacterListComponent implements OnInit {
               this.characters = [];
               this.charactersName = [];
               this.totalCharacters = 0;
-              this.store.dispatch(setLoadingSpinner({ status: false }));
+              this.store.dispatch(
+                setLoadingSpinnerForCharacters({ status: false })
+              ); // Finalizar carga
             }
           } else {
             // Si hay personajes, los cargamos
             console.log(characters);
-            this.store.dispatch(setLoadingSpinner({ status: false }));
+            this.store.dispatch(
+              setLoadingSpinnerForCharacters({ status: false })
+            ); // Finalizar carga
             this.characters = characters;
             this.charactersName = characters.name;
             this.totalCharacters = data.data.total;
@@ -83,7 +87,9 @@ export class CharacterListComponent implements OnInit {
           // Si hay un error, lo mostramos por consola
           //TODO: Mostrar error en pantalla
           console.log(error);
-          this.store.dispatch(setLoadingSpinner({ status: false }));
+          this.store.dispatch(
+            setLoadingSpinnerForCharacters({ status: false })
+          ); // Finalizar carga
         }
       );
   }

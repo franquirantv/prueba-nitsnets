@@ -7,8 +7,8 @@ import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { SharedState } from 'src/app/store/shared/shared.state';
 import { Observable } from 'rxjs';
-import { getLoading } from 'src/app/store/shared/shared.selector';
-import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
+import { getLoadingDetails } from 'src/app/store/shared/shared.selector';
+import { setLoadingSpinnerForDetails } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-character-details',
@@ -45,7 +45,7 @@ export class CharacterDetailsComponent implements OnInit {
   submitted: boolean = false;
 
   ngOnInit(): void {
-    this.showLoading$ = this.store.select(getLoading);
+    this.showLoading$ = this.store.select(getLoadingDetails);
 
     let id = this.routerActivated.snapshot.params['id'];
     this.loadCharacter(id);
@@ -60,7 +60,7 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   loadCharacter(id: number) {
-    this.store.dispatch(setLoadingSpinner({ status: true }));
+    this.store.dispatch(setLoadingSpinnerForDetails({ status: true })); // Iniciar carga
 
     this.isLocalCharacter = id < 1000 ? true : false;
 
@@ -72,12 +72,12 @@ export class CharacterDetailsComponent implements OnInit {
           this.character.thumbnail =
             'assets/uploads/' + this.character.thumbnail;
           this.loadFormData(data);
-          this.store.dispatch(setLoadingSpinner({ status: false }));
+          this.store.dispatch(setLoadingSpinnerForDetails({ status: false })); // Finalizar carga
         },
         (error: any) => {
           console.log(error);
           this.router.navigate(['/404']);
-          this.store.dispatch(setLoadingSpinner({ status: false }));
+          this.store.dispatch(setLoadingSpinnerForDetails({ status: false })); // Finalizar carga
         }
       );
     } else {
@@ -85,50 +85,50 @@ export class CharacterDetailsComponent implements OnInit {
         (data: any) => {
           console.log(data.data.results[0]);
           this.character = data.data.results[0];
+          // Se obtienen los eventos, comics y series del personaje a partir de la URI
           this.api
             .getEventsByURL(this.character.events.collectionURI)
             .subscribe(
               (data: any) => {
                 console.log(data.data.results);
                 this.events = data.data.results;
-                this.store.dispatch(setLoadingSpinner({ status: false }));
+                this.api
+                  .getComicsByURL(this.character.comics.collectionURI)
+                  .subscribe(
+                    (data: any) => {
+                      console.log(data.data.results);
+                      this.comics = data.data.results;
+                      this.api
+                        .getSeriesByURL(this.character.series.collectionURI)
+                        .subscribe(
+                          (data: any) => {
+                            console.log(data.data.results);
+                            this.series = data.data.results;
+                            this.store.dispatch(
+                              setLoadingSpinnerForDetails({ status: false })
+                            ); // Finalizar carga
+                          },
+                          (error: any) => {
+                            console.log(error);
+                          }
+                        );
+                    },
+                    (error: any) => {
+                      console.log(error);
+                    }
+                  );
               },
               (error: any) => {
                 console.log(error);
               }
             );
-          this.api
-            .getComicsByURL(this.character.comics.collectionURI)
-            .subscribe(
-              (data: any) => {
-                console.log(data.data.results);
-                this.comics = data.data.results;
-                this.store.dispatch(setLoadingSpinner({ status: false }));
-              },
-              (error: any) => {
-                console.log(error);
-              }
-            );
-          this.api
-            .getSeriesByURL(this.character.series.collectionURI)
-            .subscribe(
-              (data: any) => {
-                console.log(data.data.results);
-                this.series = data.data.results;
-                this.store.dispatch(setLoadingSpinner({ status: false }));
-              },
-              (error: any) => {
-                console.log(error);
-              }
-            );
-          console.log('EVENTOS OBTENIDOS POR URL:', this.events);
           this.urls = this.character.urls;
         },
         (error: any) => {
           //TODO: Mostrar error en pantalla
           console.log(error);
           this.router.navigate(['/404']);
-          this.store.dispatch(setLoadingSpinner({ status: false }));
+          this.store.dispatch(setLoadingSpinnerForDetails({ status: false })); // Finalizar carga
         }
       );
     }
