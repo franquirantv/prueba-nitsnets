@@ -155,7 +155,7 @@ Enlace del proyecto: [https://github.com/franquirantv/prueba-nitsnets](https://g
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[landing-screenshot]: foro-marvel\src\assets\landing-foro-marvel.jpeg
+[landing-screenshot]: https://github.com/franquirantv/prueba-nitsnets/blob/main/foro-marvel/src/assets/landing-foro-marvel.jpeg
 
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
