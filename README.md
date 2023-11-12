@@ -4,7 +4,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/franquirantv/prueba-nitsnets">
+  <a href="https://github.com/franquirantv/prueba-tecnica">
     <img src="foro-marvel\src\assets\Marvel_Logo.svg.png" alt="Logo" width="130" height="52">
   </a>
 
@@ -96,7 +96,7 @@ Es importante para la ejecución del proyecto que tengas instalado Node y NPM en
 
 1. Clona el repositorio
    ```sh
-   git clone https://github.com/franquirantv/prueba-nitsnets.git
+   git clone https://github.com/franquirantv/prueba-tecnica.git
    ```
 2. Config/Ejecutar Backend
    - Ir al directorio "backend"
@@ -147,20 +147,23 @@ Distribuido bajo la Licencia MIT. Lee `LICENSE.txt` para más información.
 
 Francisco Quirant Vicente - [Linkedin](https://linkedin.com/in/francisco-quirant-vicente) - francisco.quirant.v@gmail.com
 
-Enlace del proyecto: [https://github.com/franquirantv/prueba-nitsnets](https://github.com/franquirantv/prueba-nitsnets)
+Enlace del proyecto: [https://github.com/franquirantv/prueba-tecnica](https://github.com/franquirantv/prueba-tecnica)
 
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[landing-screenshot]: foro-marvel/src/assets/landing-foro-marvel.jpeg
+[landing-screenshot]: /foro-marvel/src/assets/landing-foro-marvel.jpeg
 
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
+
 [Typescript]: https://img.shields.io/badge/typescript-2d6ed6?style=for-the-badge&logo=typescript&logoColor=white
 [Typescript-url]: https://www.typescriptlang.org/
+
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
+
 [Nodejs.org]: https://img.shields.io/badge/NodeJS-grey?style=for-the-badge&logo=nodedotjs
 [Nodejs-url]: https://nodejs.org/
