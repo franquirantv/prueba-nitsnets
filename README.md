@@ -19,8 +19,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Tabla de contenido</summary>
@@ -43,8 +41,6 @@
     <li><a href="#contacto">Contacto</a></li>
   </ol>
 </details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
@@ -83,7 +79,7 @@ Para obtener una copia del proyecto y poder ejecutarlo, debes seguir los siguien
 
 ### Requisitos previos
 
-Before going into the project requirements, it is important that we have Node and NPM installed on our machine. To install it follow these steps:
+Es importante para la ejecución del proyecto que tengas instalado Node y NPM en tu máquina. Para instalar ambas herramientas, sigue estos pasos:
 
 #### Windows
 * [Node](https://nodejs.org/en/download/) Download page
@@ -95,18 +91,44 @@ Before going into the project requirements, it is important that we have Node an
 
 ### Instalación
 
-1. Clone the repo
+1. Clona el repositorio
    ```sh
-   git clone https://github.com/franquirantv/ta2at-demo.git
+   git clone https://github.com/franquirantv/prueba-nitsnets.git
    ```
-2. Install NPM packages
+2. Config/Ejecutar Backend
+   - Ir al directorio "backend"
    ```sh
-   npm install --legacy-peer-deps
+   cd backend
    ```
-3. Run the app
-    ```sh
-    npm run start
-    ```
+   - Instalar las dependencias necesarias
+   ```sh
+   npm install
+   ```
+   - Ejecutar el servicio
+   ```sh
+   nodemon index.js
+   ```
+
+3. Config/Ejecutar Frontend
+   - Ir al directorio "foro-marvel"
+   ```sh
+   cd foro-marvel
+   ```
+   - Instalar las dependencias necesarias
+   ```sh
+   npm install
+   ```
+   - Antes de ejecutar el servicio necesitamos configurar la Api_key y el hash para la API de Marvel. Para esto deberemos registrarnos en la página [Marvel for devs](https://developer.marvel.com/documentation/getting_started).
+   Una vez tenemos los datos, tenemos que editar el archivo "environments/environment.example.ts". Primero cambiarle el nombre a "environment.ts" y después editar los campos Api_key y hash con tus datos únicos.
+   - Ejecutar el servicio
+   ```sh
+   ng serve
+   ```
+   o 
+   ```sh
+   npm start
+   ```
+
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
 <!-- ROADMAP -->
@@ -126,7 +148,7 @@ Distribuido bajo la Licencia MIT. Lee `LICENSE.txt` para más información.
 
 Francisco Quirant Vicente - [Linkedin](https://linkedin.com/in/francisco-quirant-vicente) - francisco.quirant.v@gmail.com
 
-Project Link: [https://github.com/franquirantv/prueba-nitsnets](https://github.com/franquirantv/prueba-nitsnets)
+Enlace del proyecto: [https://github.com/franquirantv/prueba-nitsnets](https://github.com/franquirantv/prueba-nitsnets)
 
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
@@ -141,5 +163,5 @@ Project Link: [https://github.com/franquirantv/prueba-nitsnets](https://github.c
 [Typescript-url]: https://www.typescriptlang.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[Nodejs.org]: https://img.shields.io/npm/v/npm.svg?logo=nodedotjs
+[Nodejs.org]: https://img.shields.io/badge/NodeJS-grey?style=for-the-badge&logo=nodedotjs
 [Nodejs-url]: https://nodejs.org/
