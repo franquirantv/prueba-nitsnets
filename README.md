@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/franquirantv/prueba-nitsnets">
-    <img src="src/assets/images/favicon_grande.png" alt="Logo" width="80" height="80">
+    <img src="foro-marvel\src\assets\Marvel_Logo.svg.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Foro Marvel</h3>
@@ -133,7 +133,7 @@ Project Link: [https://github.com/franquirantv/prueba-nitsnets](https://github.c
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[landing-screenshot]: src/assets/landing-foro-marvel.jpeg
+[landing-screenshot]: foro-marvel\src\assets\landing-foro-marvel.jpeg
 
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
