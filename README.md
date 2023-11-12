@@ -52,11 +52,11 @@ Hay disponibles hasta 4 páginas:
 
 1. En la página principal se muestran: los **últimos cómics**, ordenados por la 'focDate' (fecha límite de compra para las editoriales); los **eventos más relevantes**, que los obtengo a partir de la mayor diferencia entre la fecha de inicio y final del evento; una **lista de personajes**, donde puedes buscar entre los diferentes personajes del universo Marvel.
 
-2. En la página **personajes EXTRA** se muestra un listado de personajes paralelo al de Marvel, el cual se compone por personajes que han sido añadidos de forma manual. Para añadir un personaje, se debe pulsar en el botón a la derecha del buscador, donde aparecerá un formulario donde poder añadir un nombre, descripción e imágen. Solo será obligatorio el nombre.
+2. En la página **personajes EXTRA** se muestra un listado de personajes paralelo al de Marvel, el cual se compone por personajes que han sido añadidos de forma manual. Para añadir un personaje, se debe pulsar en el botón a la derecha del buscador, donde aparecerá un formulario donde poder añadir un nombre, descripción e imagen. Solo será obligatorio el nombre.
 
 3. La **página de detalles** de un personaje, donde diferenciamos dos tipos:
-  - Personajes de la API, donde se muestra su imágen, nombre, descripción, eventos, series, cómics y enlaces externos.
-  - Personajes EXTRA, donde aparece la imágen, nombre y descripción. Y donde además se pueden editar sus datos y borrar el personaje. 
+  - Personajes de la API, donde se muestra su imagen, nombre, descripción, eventos, series, cómics y enlaces externos.
+  - Personajes EXTRA, donde aparece la imagen, nombre y descripción. Y donde además se pueden editar sus datos y borrar el personaje. 
 
 4. Página 404, donde se muestra que la ruta a la que se ha accedido no es correcta. Esta página aparecerá cuando se introduzca manualmente una ruta desconocida, se acceda a los detalles de un personaje no almacenado, etc.
 
@@ -64,6 +64,8 @@ La interfaz de esta aplicación es una inspiración de la página oficial de [Ma
 
 En cuanto a la Base de Datos, todo se guarda en el archivo "backend/characters.db", y se hace la conexión en "backend/db/connectionSQLite.js", que se ejecuta siempre que se inicia el servidor backend. 
 Para ver los datos en una UI, me he instalado el software "_DB Browser for SQLite_". 
+
+Se ha usado el patrón de estado **Redux** para manejar la carga mientras se obtienen los datos en la aplicación. Se crean estados separados para cada componente. Para las llamadas locales no lo he visto necesario, ya que las sentencias de sql son casi instantáneas.
 
 ### Herramientas
 
