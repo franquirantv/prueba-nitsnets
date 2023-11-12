@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/franquirantv/prueba-nitsnets">
-    <img src="foro-marvel\src\assets\Marvel_Logo.svg.png" alt="Logo" width="80" height="80">
+    <img src="foro-marvel\src\assets\Marvel_Logo.svg.png" alt="Logo" width="130" height="52">
   </a>
 
   <h3 align="center">Foro Marvel</h3>
