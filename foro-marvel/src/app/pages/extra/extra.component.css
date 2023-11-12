@@ -1,12 +1,11 @@
 .section-title {
   color: white;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 .highlighted-text {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   text-transform: uppercase;
   font-weight: 500;
   background-color: rgb(234, 30, 30);

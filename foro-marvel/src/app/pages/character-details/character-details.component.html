@@ -24,7 +24,7 @@
       <div class="character-detail">
         <div class="section-1">
           <div class="container">
-            <h2>{{ character.name }}</h2>
+            <h2 class="mb-5">{{ character.name }}</h2>
             <p>{{ character.description || 'Sin descripción.' }}</p>
           </div>
         </div>
@@ -165,13 +165,13 @@
               <textarea
                 class="form-control"
                 id="textareaDescription"
-                maxlength="200"
+                maxlength="1000"
                 rows="1"
                 (input)="autoGrow($event)"
                 formControlName="description"
                 aria-describedby="nameHelp"></textarea>
               <div id="descriptionHelp" class="form-text">
-                Como máximo 200 caracteres.
+                Como máximo 1000 caracteres.
               </div>
             </div>
             <div class="row py-2">
@@ -183,7 +183,7 @@
                     id="upload"
                     accept="image/*"
                     type="file"
-                    (change)="readURL($event); showFileName($event)"
+                    (change)="readURL($event)"
                     class="form-control border-0" />
                   <label
                     id="upload-label"

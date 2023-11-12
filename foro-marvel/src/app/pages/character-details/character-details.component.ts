@@ -168,13 +168,20 @@ export class CharacterDetailsComponent implements OnInit {
   readURL(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file: File = event.target.files[0];
-      // mostrar la imagen del file en el preview #imageResult
-
-      this.fileUploaded = file;
-      this.fileUpdated = true;
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e: any) => (this.imageSrc = e.target.result);
+      if (file.size > 5 * 1024 * 1024) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'La imagen no puede tener un tamaño mayor a 5MB. Por favor, comprima la imagen o elija una diferente.',
+        });
+      } else {
+        this.showFileName(event);
+        this.fileUploaded = file;
+        this.fileUpdated = true;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e: any) => (this.imageSrc = e.target.result);
+      }
     }
   }
 

@@ -72,11 +72,23 @@ export class ExtraComponent implements OnInit {
         description: this.addCharacterForm.get('description')?.value,
         thumbnail: this.fileUploaded.name,
       };
+
       this.sql.addCharacter(obj).subscribe(
         (data: any) => {
+          //Resetear datos del formulario
           this.addCharacterForm.reset();
+          this.fileUploaded = new File([], ''); // Vaciar el archivo subido en fileUpdated
+          this.imageSrc = 'assets/uploads/no-image.png';
+          const infoArea = document.getElementById('upload-label');
+          if (infoArea !== null) {
+            infoArea.textContent = 'Nombre de la imagen';
+          }
+
+          //Cerrar el modal
           const closeBtn = document.getElementById('close-modal');
           closeBtn?.click();
+
+          // Mostrar mensaje de éxito
           const Toast = Swal.mixin({
             toast: true,
             position: 'bottom-end',
@@ -92,9 +104,8 @@ export class ExtraComponent implements OnInit {
             icon: 'success',
             title: 'Personaje añadido con éxito!',
           });
+
           this.childComponent.getCharacter(); // Recargar la lista de personajes
-          // Vaciar el archivo subido en fileUpdated
-          this.fileUploaded = new File([], '');
         },
         (error: any) => {
           Swal.fire({
@@ -111,14 +122,19 @@ export class ExtraComponent implements OnInit {
   readURL(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file: File = event.target.files[0];
-      // mostrar la imagen del file en el preview #imageResult
-      // this.addCharacterForm.patchValue({
-      //   thumbnail: file,
-      // });
-      this.fileUploaded = file;
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e: any) => (this.imageSrc = e.target.result);
+      if (file.size > 5 * 1024 * 1024) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'La imagen no puede tener un tamaño mayor a 5MB. Por favor, comprima la imagen o elija una diferente.',
+        });
+      } else {
+        this.showFileName(event);
+        this.fileUploaded = file;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e: any) => (this.imageSrc = e.target.result);
+      }
     }
   }
 

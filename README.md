@@ -8,15 +8,14 @@
     <img src="src/assets/images/favicon_grande.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Prueba NITSNETS</h3>
+  <h3 align="center">Foro Marvel</h3>
 
   <p align="center">
-    Preview your next tattoo!
+    Si eres fan de Marvel, ¡este es tu sitio!
     <br />
-    <a href="https://linkedin.com/in/francisco-quirant-vicente"><strong>Check my profile »</strong></a>
+    <a href="https://linkedin.com/in/francisco-quirant-vicente"><strong>Mira mi perfil »</strong></a>
     <br />
     <br />
-    <a href="https://ta2at-demo.netlify.app">Ver Demo</a>
   </p>
 </div>
 
@@ -24,67 +23,65 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tabla de contenido</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#sobre-el-proyecto">Sobre el proyecto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#herramientas">Herramientas</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#configuracion-y-ejecucion">Configuración y ejecución</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#requisitos-previos">Requisitos previos</a></li>
+        <li><a href="#instalacion">Instalación</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#futuras-mejoras">Futuras mejoras</a></li>
+    <li><a href="#licencia">Licencia</a></li>
+    <li><a href="#contacto">Contacto</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Sobre el proyecto
 
-[![Landing Screen Shot][landing-screenshot]](https://ta2at-demo.netlify.app)
+[![Landing Screen Shot][landing-screenshot]]
 
-This web application is the DEMO version of the TA2AT project (https://tatuate.es).
+Esta aplicación es una plataforma donde puedes acceder a información relevante sobre el universo Marvel.
 
-Its goal is to reduce the uncertainty of people who want to get a tattoo.
+Hay disponibles hasta 4 páginas:
 
-This is achieved through a tattoo previewer, which allows users to see how a tattoo would look like on their body before getting it tattooed. This previewer consists of a customizable 3D avatar, in which you can capture both tattoos uploaded by local tattoo studios, as well as tattoos uploaded by users themselves. You can also place and modify the tattoo to your liking, and share it with your friends so they can give you their opinion.
+1. En la página principal se muestran: los *últimos cómics*, ordenados por la 'focDate' (fecha límite de compra para las editoriales); los *eventos más relevantes*, que los obtengo a partir de la mayor diferencia entre la fecha de inicio y final del evento; una *lista de personajes*, donde puedes buscar entre los diferentes personajes del universo Marvel.
 
-[![Explore Page][explore-screenshot]](https://ta2at-demo.netlify.app)
+2. En la página *personajes EXTRA* se muestra un listado de personajes paralelo al de Marvel, el cual se compone por personajes que han sido añadidos de forma manual. Para añadir un personaje, se debe pulsar en el botón a la derecha del buscador, donde aparecerá un formulario donde poder añadir un nombre, descripción e imágen. Solo será obligatorio el nombre.
 
-There are up to 3 different roles in the application: user, tattoo studio and administrator. Each of them has its own functionalities and different views. (admin view not included)
+3. La *página de detalles* de un personaje, donde diferenciamos dos tipos:
+  - Personajes de la API, donde se muestra su imágen, nombre, descripción, eventos, series, cómics y enlaces externos.
+  - Personajes EXTRA, donde aparece la imágen, nombre y descripción. Y donde además se pueden editar sus datos y borrar el personaje. 
 
-Since it is a DEMO, the availability of the services and the persistence of the data is not guaranteed. That is to say, it is not guaranteed that the data stored in the application will be maintained over time.
+4. Página 404, donde se muestra que la ruta a la que se ha accedido no es correcta. Esta página aparecerá cuando se introduzca manualmente una ruta desconocida, se acceda a los detalles de un personaje no almacenado, etc.
 
-For this version of the application there is no backend to manage the data, so the application has a temporary storage.
+La interfaz de esta aplicación es una inspiración de la página oficial de [Marvel](https://marvel.com).
 
+### Herramientas
 
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+La aplicación ha sido desarrollada con Angular + Bootstrap en la parte del Frontend y con NodeJS en la parte del Backend.
 
 * [![Angular][Angular.io]][Angular-url]
 * [![Typescript][Typescript]][Typescript-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![Three.js][Three.js]][Three-url]
-
+* [![Nodejs][Nodejs.org]][Nodejs-url]
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Configuración y ejecución
 
-To get a local copy up and running follow these simple example steps.
+Para obtener una copia del proyecto y poder ejecutarlo, debes seguir los siguientes pasos:
 
-### Prerequisites
+### Requisitos previos
 
 Before going into the project requirements, it is important that we have Node and NPM installed on our machine. To install it follow these steps:
 
@@ -96,7 +93,7 @@ Before going into the project requirements, it is important that we have Node an
   sudo apt install nodejs npm
   ```
 
-### Installation
+### Instalación
 
 1. Clone the repo
    ```sh
@@ -112,65 +109,37 @@ Before going into the project requirements, it is important that we have Node an
     ```
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-For **users**, the Explore page offers the opportunity to peruse our extensive tattoo gallery, tailor your avatar's appearance, and experiment with different tattoo options for your virtual character. Moreover, you have the option to communicate with the tattoo studio that has uploaded a design you admire, enabling you to arrange an appointment at your convenience.
-
-For **tattoo studios**, an interactive dashboard is available, providing a comprehensive overview of the engagement surrounding your uploaded tattoo designs. This platform also facilitates the seamless uploading of your tattoo creations, allowing you to preview them on a standard avatar. Additionally, it grants you access to notifications and messages from prospective clients, streamlining your communication and management process.
-
-
-
 <!-- ROADMAP -->
-## Roadmap
+## Futuras mejoras
 
-There are certain parts of the application that obviously need an improvement or even a rebuild. However, the project is currently on hold (it is not ruled out that it will be taken up again in the future).
-
-If you want to help the development of the project:
-
-See the [open issues](https://github.com/franquirantv/ta2at-demo/issues) for a full list of proposed features (and known issues).
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
+- [:x:] Implementar las páginas de detalles de cómics, eventos, series...
+- [:x:] Crear la autentificación de usuarios.
+- [:x:] Crear los Tests unitarios.
 
 <!-- LICENSE -->
-## License
+## Licencia
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
+Distribuido bajo la Licencia MIT. Lee `LICENSE.txt` para más información.
 
 <!-- CONTACT -->
-## Contact
+## Contacto
 
 Francisco Quirant Vicente - [Linkedin](https://linkedin.com/in/francisco-quirant-vicente) - francisco.quirant.v@gmail.com
 
-Project Link: [https://github.com/franquirantv/ta2at-demo](https://github.com/franquirantv/ta2at-demo)
+Project Link: [https://github.com/franquirantv/prueba-nitsnets](https://github.com/franquirantv/prueba-nitsnets)
 
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[landing-screenshot]: src/assets/images/landing-final.jpeg
-[explore-screenshot]: src/assets/images/explorar-final.jpeg
+[landing-screenshot]: src/assets/landing-foro-marvel.jpeg
+
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
 [Typescript]: https://img.shields.io/badge/typescript-2d6ed6?style=for-the-badge&logo=typescript&logoColor=white
 [Typescript-url]: https://www.typescriptlang.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[Three.js]: https://img.shields.io/badge/Three.js-ffffff?style=for-the-badge&logo=threedotjs&logoColor=black
-[Three-url]: https://threejs.org
+[Nodejs.org]: https://img.shields.io/npm/v/npm.svg?logo=nodedotjs
+[Nodejs-url]: https://nodejs.org/

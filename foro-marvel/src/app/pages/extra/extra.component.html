@@ -1,5 +1,5 @@
 <section class="container min-height">
-  <h2 id="search-bar" class="section-title">
+  <h2 id="search-bar" class="section-title mt-4 mb-4">
     Listado de personajes
     <span class="highlighted-text">Extra</span>
   </h2>
@@ -59,13 +59,13 @@
             <textarea
               class="form-control"
               id="textareaDescription"
-              maxlength="200"
+              maxlength="1000"
               rows="1"
               (input)="autoGrow($event)"
               formControlName="description"
               aria-describedby="nameHelp"></textarea>
             <div id="descriptionHelp" class="form-text">
-              Como máximo 200 caracteres.
+              Como máximo 1000 caracteres.
             </div>
           </div>
           <div class="row py-2">
@@ -77,7 +77,7 @@
                   id="upload"
                   accept="image/*"
                   type="file"
-                  (change)="readURL($event); showFileName($event)"
+                  (change)="readURL($event)"
                   class="form-control border-0" />
                 <label
                   id="upload-label"

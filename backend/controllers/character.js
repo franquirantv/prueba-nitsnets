@@ -94,10 +94,11 @@ const createCharacters = async (req, res) => {
         const { name, description } = req.body;
         let { thumbnail } = req.body;
         var extension = thumbnail.split('.')[1];
+        const formatosValidos = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'tiff'];
 
         if (thumbnail.length < 1 || thumbnail == "") {
             thumbnail = 'no-image.png';
-        } else if (extension == "" || extension == undefined || extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'webp'){
+        } else if (extension == "" || extension == undefined || !formatosValidos.includes(extension) ){
             return res.status(400).json({
                 ok: false,
                 msg: "El formato de la imagen no es válido",
@@ -125,7 +126,7 @@ const createCharacters = async (req, res) => {
                     modified
                 }
             });
-            console.log(`successful input: ${name}, ${description}`);
+            // console.log(`successful input: ${name}, ${description}`);
         });
 
         
@@ -144,17 +145,19 @@ const updateCharacters = async (req, res) => {
         let { thumbnail } = req.body;
         const modified = new Date().toISOString();
         let extension;
-        console.log('thumbnail: ', thumbnail);
+        // console.log('thumbnail: ', thumbnail);
         
         if (thumbnail === undefined || thumbnail === null || thumbnail === "") {
-            console.log('thumbnail: ', thumbnail);
+            // console.log('thumbnail: ', thumbnail);
             thumbnail = 'no-image.png';
         }
 
         extension = thumbnail.split('.')[1];
-        console.log('thumbnail: ', thumbnail);
-        console.log('extension: ', extension);
-        if (extension == "" || extension == undefined || extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'webp'){
+        // console.log('thumbnail: ', thumbnail);
+        // console.log('extension: ', extension);
+        const formatosValidos = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'tiff'];
+
+        if (extension == "" || extension == undefined || !formatosValidos.includes(extension)){
             return res.status(400).json({
                 ok: false,
                 msg: "El formato de la imagen no es válido",
@@ -181,7 +184,7 @@ const updateCharacters = async (req, res) => {
                 }
             });
 
-            console.log(`successful update ${id}`);
+            // console.log(`successful update ${id}`);
         });
 
     } catch (error) {
@@ -207,7 +210,7 @@ const deleteCharacters = async (req, res) => {
                 });
             }
             const existeUsuario = this.changes === 0 ? false : true;
-            console.log('existeuser: ',existeUsuario);
+            // console.log('existeuser: ',existeUsuario);
             if (existeUsuario === false) {
                 return res.status(400).json({
                     ok: false,
@@ -220,7 +223,7 @@ const deleteCharacters = async (req, res) => {
                 id: id
             });
             
-            console.log(`successful delete ${id}`);
+            // console.log(`successful delete ${id}`);
         });
 
     } catch (error) {
