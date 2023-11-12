@@ -45,8 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
 
-[Landing Screen Shot][landing-screenshot]
-
+[![Landing Screen Shot][landing-screenshot]](https://github.com/franquirantv/prueba-tecnica)
 Esta aplicación es una plataforma donde puedes acceder a información relevante sobre el universo Marvel.
 
 Hay disponibles hasta 4 páginas:
