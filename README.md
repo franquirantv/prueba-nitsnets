@@ -123,7 +123,7 @@ Es importante para la ejecución del proyecto que tengas instalado Node y NPM en
    npm install
    ```
    - Antes de ejecutar el servicio necesitamos configurar la Api_key y el hash para la API de Marvel. Para esto deberemos registrarnos en la página [Marvel for devs](https://developer.marvel.com/documentation/getting_started).
-   Una vez tenemos los datos, tenemos que editar el archivo "environments/environment.example.ts". Primero cambiarle el nombre a "environment.ts" y después editar los campos Api_key y hash con tus datos únicos.
+   Una vez tenemos los datos, tenemos que editar el archivo "environments/environment.ts" y "environtments/environment.prod.ts". Debes editar los campos Api_key y hash con tus datos únicos.
    - Ejecutar el servicio
    ```sh
    npm start
